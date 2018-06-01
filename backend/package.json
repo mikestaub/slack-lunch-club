@@ -1,0 +1,83 @@
+{
+  "name": "slack-lunch-club-backend",
+  "version": "1.0.0",
+  "description": "All lambda functions for slack-lunch-club backend logic",
+  "main": "index.js",
+  "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
+  "private": true,
+  "scripts": {
+    "build": "npm run lint && npm run build:lambda && npm run build:gql",
+    "build:lambda": "serverless webpack --stage production",
+    "build:gql": "cd packages/graphql && npm run build",
+    "debug":
+      "concurrently 'node --inspect=0.0.0.0:9229 $(which serverless) offline --noTimeout --host 0.0.0.0 --port 4000 --dontPrintOutput --location .webpack/service --stage development'",
+    "deploy:staging":
+      "export NODE_ENV=staging && serverless create_domain --stage staging && serverless deploy --stage staging",
+    "deploy:production":
+      "export NODE_ENV=production && serverless create_domain --stage production && serverless deploy --stage production",
+    "encrypt": "simple-secrets encrypt",
+    "decrypt": "simple-secrets decrypt",
+    "lint": "eslint .",
+    "report-coverage": "codecov",
+    "clean-dirs": "rm -rf coverage",
+    "start":
+      "serverless offline --host 0.0.0.0 --port 4000 --dontPrintOutput --stage development --httpsProtocol config/ssl",
+    "start:dist":
+      "USE_DIST=true serverless offline --host 0.0.0.0 --port 4000 --skipCacheInvalidation --dontPrintOutput --stage development --httpsProtocol config/ssl",
+    "test:watch": "WATCH=true jest --watch --verbose",
+    "test:debug":
+      "node --inspect=0.0.0.0:9229 --inspect-brk node_modules/.bin/jest --runInBand --watch --verbose",
+    "test": "npm run clean-dirs && jest --verbose --runInBand",
+    "test-match-func":
+      "serverless invoke local --function match-mailer --stage development",
+    "test-db-backup":
+      "serverless invoke local --function db-backup --stage development",
+    "test-db-restore":
+      "serverless invoke local --function db-restore --stage development --data '{\"s3Key\": \"S3_KEY_PLACE_HOLDER\"}'"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.42",
+    "@babel/plugin-proposal-export-default-from": "7.0.0-beta.42",
+    "@babel/plugin-proposal-function-bind": "7.0.0-beta.42",
+    "@babel/plugin-transform-runtime": "7.0.0-beta.42",
+    "@babel/preset-env": "7.0.0-beta.42",
+    "@babel/preset-flow": "7.0.0-beta.42",
+    "@babel/register": "7.0.0-beta.42",
+    "@keboola/serverless-papertrail-logging": "1.1.1",
+    "@mikestaub/simple-secrets": "2.0.0",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "23.0.1",
+    "babel-loader": "8.0.0-beta.0",
+    "babel-plugin-source-map-support": "2.0.1",
+    "codecov": "3.0.2",
+    "concurrently": "3.5.1",
+    "copy-webpack-plugin": "4.5.1",
+    "eslint": "4.19.1",
+    "get-port": "3.2.0",
+    "glob-fs": "0.1.7",
+    "graphql-tag": "2.9.2",
+    "html-loader": "0.5.5",
+    "html-loader-jest": "0.2.1",
+    "jest": "23.0.1",
+    "jest-raw-loader": "1.0.1",
+    "jest-transform-graphql": "2.1.0",
+    "maildev": "1.0.0-rc3",
+    "p-each-series": "1.0.0",
+    "raw-loader": "0.5.1",
+    "regenerator-runtime": "0.11.1",
+    "serverless-content-encoding": "1.0.22",
+    "serverless-domain-manager": "2.4.0",
+    "serverless-offline": "3.20.2",
+    "serverless-plugin-warmup": "3.6.1-rc.1",
+    "serverless-webpack": "5.1.5",
+    "webpack": "4.10.0",
+    "webpack-node-externals": "1.7.2",
+    "webpack-permissions-plugin": "1.0.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "7.0.0-beta.42",
+    "lodash": "4.17.5"
+  },
+  "workspaces": ["packages/*"]
+}
