@@ -148,7 +148,6 @@ const ListItemBody = styled.div`
 
   &::after {
     background-image: linear-gradient(to right, #c140fe, #e09160);
-    background-attachment: fixed;
     opacity: 0.8;
     position: absolute;
     content: "";
