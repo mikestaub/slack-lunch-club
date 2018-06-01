@@ -1,0 +1,41 @@
+# http://graphql.org/learn/pagination/
+
+scalar Cursor
+
+scalar PaginationInt
+
+interface Node {
+  id: ID!
+  createdAt: DateTime!
+}
+
+interface Edge {
+  cursor: Cursor!
+}
+
+interface Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: Cursor
+  endCursor: Cursor
+}
+
+enum SORT_TYPE {
+  ASCENDING
+  DESCENDING
+}
+
+input PaginationInput {
+  before: Cursor
+  after: Cursor
+  first: PaginationInt = 20
+  last: PaginationInt
+  # NOTE: make sure DB has props indices for sorting
+  orderBy: String = "id"
+  sortType: SORT_TYPE = ASCENDING
+}

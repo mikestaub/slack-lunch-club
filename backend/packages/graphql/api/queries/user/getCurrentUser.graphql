@@ -1,0 +1,9 @@
+#import "../../fragments/AllUserProps.graphql"
+
+query getCurrentUser {
+  getCurrentUser {
+    user {
+      ...AllUserProps
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "name": "slack-lunch-club-graphql-api",
+  "version": "1.0.0",
+  "description":
+    "The GraphQL API for slack-lunch-club (https://www.howtographql.com) (https://github.com/sogko/graphql-schema-language-cheat-sheet)",
+  "main": "index.js",
+  "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run webpack && npm run gen:schema && npm run gen:flowtypes",
+    "gen:schema": "node ./build/genSchema.js",
+    "gen:flowtypes":
+      "gql2flow ./build/schema.json --module-name '\"graphql-types\"' --output-file ../../flow-types/graphql-types.js",
+    "webpack": "webpack --config ./webpack.config.js"
+  },
+  "devDependencies": {
+    "@mikestaub/gql2flow": "1.0.0",
+    "webpack": "4.8.3",
+    "webpack-cli": "2.1.4"
+  },
+  "dependencies": {
+    "base64-url": "2.2.0",
+    "common-tags": "1.7.2",
+    "geo-distance": "0.1.2",
+    "graphql": "0.13.2",
+    "graphql-custom-types": "1.4.0",
+    "graphql-errors": "2.1.0",
+    "graphql-input-number": "0.0.10",
+    "graphql-input-string": "0.0.16",
+    "graphql-tools": "3.0.2",
+    "handlebars": "4.0.11",
+    "isomorphic-fetch": "2.2.1",
+    "merge-graphql-schemas": "1.5.1",
+    "p-reflect": "1.0.0",
+    "proxy-validator": "1.0.0",
+    "xss-filters": "1.2.7"
+  }
+}

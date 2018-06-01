@@ -1,0 +1,9 @@
+mutation createSlackTeam($input: CreateSlackTeamInput!) {
+  createSlackTeam(input: $input) {
+    slackTeam {
+      id
+      slackApiId
+      name
+    }
+  }
+}

@@ -1,0 +1,9 @@
+#import "../../fragments/AllUserProps.graphql"
+
+mutation createUser($input: CreateUserInput!) {
+  createUser(input: $input) {
+    user {
+      ...AllUserProps
+    }
+  }
+}

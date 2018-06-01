@@ -1,0 +1,22 @@
+type Query {
+  getSlackTeamsByProps(
+    input: GetSlackTeamsByPropsInput
+  ): GetSlackTeamsByPropsResult
+}
+
+input GetSlackTeamsByPropsInput {
+  filter: SlackTeamInput = {}
+  pagination: PaginationInput = {}
+}
+
+type GetSlackTeamsByPropsResult implements Connection {
+  totalCount: Int!
+  edges: [SlackTeamsEdge]!
+  pageInfo: PageInfo!
+}
+
+type SlackTeamsEdge implements Edge {
+  cursor: Cursor!
+  node: SlackTeam!
+  createdAt: DateTime
+}

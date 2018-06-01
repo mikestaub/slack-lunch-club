@@ -1,0 +1,55 @@
+fragment AllUserProps on User {
+  id
+  name
+  email
+  profilePhoto
+  role
+  matchEveryWeek
+  availableDays {
+    monday
+    tuesday
+    wednesday
+    thursday
+    friday
+  }
+  location {
+    key
+    lat
+    lng
+    formattedAddress
+  }
+  lastMatchEmailSent
+  matchedConnection {
+    totalCount
+    edges {
+      node {
+        id
+        email
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+  slackTeamMemberConnection {
+    totalCount
+    edges {
+      node {
+        id
+        slackApiId
+        name
+      }
+      cursor
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

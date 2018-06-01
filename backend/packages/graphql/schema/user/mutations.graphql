@@ -1,0 +1,74 @@
+type Mutation {
+  createUser(input: CreateUserInput!): CreateUserResult
+  updateUser(input: UpdateUserInput!): UpdateUserResult
+  deleteUser(input: DeleteUserInput!): DeleteUserResult
+  notifyUnmatchedUsers(
+    input: NotifyUnmatchedUsersInput!
+  ): NotifyUnmatchedUsersResult
+  matchUsers(input: MatchUsersInput): MatchUsersResult
+  addToSlackTeam(input: AddToSlackTeamInput): AddToSlackTeamResult
+}
+
+input CreateUserInput {
+  name: String!
+  email: Email!
+  profilePhoto: URL!
+  role: USER_ROLE = DEFAULT
+  matchEveryWeek: Boolean = false
+  availableDays: UserAvailableDaysInput
+  location: PhysicalLocationInput
+}
+
+type CreateUserResult {
+  user: User!
+}
+
+input UpdateUserInput {
+  id: ID!
+  name: String
+  email: Email
+  profilePhoto: URL
+  role: USER_ROLE
+  matchEveryWeek: Boolean
+  availableDays: UserAvailableDaysInput
+  location: PhysicalLocationInput
+  lastMatchEmailSent: DateTime
+}
+
+type UpdateUserResult {
+  user: User!
+}
+
+input DeleteUserInput {
+  id: ID!
+}
+
+type DeleteUserResult {
+  success: Boolean!
+}
+
+input NotifyUnmatchedUsersInput {
+  userIds: [ID]!
+}
+
+type NotifyUnmatchedUsersResult {
+  success: Boolean!
+}
+
+input MatchUsersInput {
+  matches: [[ID!]]!
+}
+
+type MatchUsersResult {
+  success: Boolean!
+}
+
+input AddToSlackTeamInput {
+  # not the slack API id, but our own internal id
+  slackTeamId: ID!
+  userId: ID!
+}
+
+type AddToSlackTeamResult {
+  success: Boolean!
+}
