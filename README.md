@@ -4,7 +4,7 @@
 
 ## Overview
 
-Read the series of [blog posts](https://BLOG_POST_URL) for more information about this project.
+Read the series of [blog posts](https://medium.com/@mikestaub22/slack-lunch-club-part-1-7-deep-dive-into-a-modern-web-app-d3eb980a215) for more information about this project.
 
 This application allows a user to input the following:
 

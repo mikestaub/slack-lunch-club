@@ -39,13 +39,21 @@ function About(props) {
       <Text>
         To learn more about how the app was implemented, read the blog post
         series
-        <Link href="https://medium.com/BLOG_POST_URL" target="_blank">
+        <Link
+          href="https://medium.com/@mikestaub22/slack-lunch-club-part-1-7-deep-dive-into-a-modern-web-app-d3eb980a215"
+          target="_blank"
+          rel="noopener"
+        >
           here
         </Link>.
       </Text>
       <Text>
         And follow me on twitter for future updates.
-        <Link href="https://twitter.com/mikestaub" target="_blank">
+        <Link
+          href="https://twitter.com/mikestaub"
+          target="_blank"
+          rel="noopener"
+        >
           @mikestaub
         </Link>
       </Text>
