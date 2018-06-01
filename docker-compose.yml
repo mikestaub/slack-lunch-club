@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+
+  # development container
+  slack-lunch-club-devbox:
+    container_name: slack-lunch-club-devbox
+    image: slack-lunch-club-devbox
+    build: .
+    links:
+      - slack-lunch-club-arangodb
+    environment:
+      - NODE_ENV=development
+      - TERM=xterm-color
+      - TZ=America/Los_Angeles
+      - AWS_CLIENT_TIMEOUT=200000000 # allow deploys on slow network
+      - SLS_DEBUG=true
+    ports:
+      - 3000:3000 # frontend
+      - 4000:4000 # backend
+      - 9229:9229 # debug backend
+    volumes:
+      - './:/opt/app:delegated'
+      - '~/.git:/root/.git'
+    command: 'tail -f /dev/null'
+    privileged: true
+
+  # database
+  slack-lunch-club-arangodb:
+    container_name: slack-lunch-club-arangodb
+    image: arangodb:3.3.8
+    environment:
+      - ARANGO_NO_AUTH=1
+    ports:
+      - 8529:8529 # web UI
+    volumes:
+      - arangodb-data:/var/lib/arangodb3
+
+volumes:
+  arangodb-data: null
+

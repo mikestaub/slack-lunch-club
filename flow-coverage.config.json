@@ -1,0 +1,15 @@
+{
+  "concurrentFiles": 1,
+  "excludeGlob": [
+    "**/node_modules/**",
+    "**/build/**",
+    "**/.webpack/**",
+    "**/.serverless/**",
+    "backend/coverage/**",
+    "backend/flow-types/**",
+    "flow-typed/**"
+  ],
+  "includeGlob": ["backend/**/*.js"],
+  "threshold": 60,
+  "type": "html"
+}

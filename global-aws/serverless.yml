@@ -1,0 +1,17 @@
+service: slack-lunch-club-global
+
+frameworkVersion: '>=1.27.3 <2.0.0'
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  region: us-east-1
+  stage: aws
+  deploymentBucket: ${self:service}-deployment
+
+custom:
+  secrets: ${file(./getSecrets.js)}
+
+resources:
+  Resources: ${file(./resources.yml):Resources}
+  Outputs: ${file(./resources.yml):Outputs}
