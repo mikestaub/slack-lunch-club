@@ -1,0 +1,48 @@
+service: slack-lunch-club-frontend
+
+frameworkVersion: '>=1.2.0 <2.0.0'
+
+provider:
+  name: aws
+  # SSL certs can only be approved in us-east-1
+  # http://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html
+  region: us-east-1
+  cfLogs: true
+  runtime: nodejs6.10
+  stage: ${opt:stage}
+  deploymentBucket: ${self:service}-deployment
+
+plugins:
+  - serverless-s3-deploy
+
+custom:
+  domainName: ${opt:domainName}
+  assets:
+    auto: true
+    targets:
+      - bucket: ${self:custom.domainName}
+        files:
+          - source: ./build
+            globs: '**'
+  globalAws:
+    HostedZoneName: ${cf:slack-lunch-club-global-aws.HostedZoneName}
+    PrivateHostedZoneId: ${cf:slack-lunch-club-global-aws.PrivateHostedZoneId}
+    PublicHostedZoneId: ${cf:slack-lunch-club-global-aws.PublicHostedZoneId}
+    PublicSubnet: ${cf:slack-lunch-club-global-aws.PublicSubnet}
+    PrivateSubnet: ${cf:slack-lunch-club-global-aws.PrivateSubnet}
+    RootSSLCertificate: ${cf:slack-lunch-club-global-aws.RootSSLCertificate}
+    WildcardSSLCertificate: ${cf:slack-lunch-club-global-aws.WildcardSSLCertificate}
+
+resources:
+  Conditions:
+    isProduction:
+      Fn::Equals:
+        - ${opt:stage}
+        - 'production'
+    isNotProduction:
+      Fn::Not:
+        - Fn::Equals:
+          - ${opt:stage}
+          - 'production'
+  Resources: ${file(./resources.yml):Resources}
+  Outputs: ${file(./resources.yml):Outputs}
