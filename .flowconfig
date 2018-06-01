@@ -1,0 +1,28 @@
+
+[ignore]
+.*\.webpack/.*
+.*\.serverless/.*
+.*/build/.*
+.*/node_modules/.*
+
+[libs]
+flow-typed/
+backend/flow-types/
+
+[options]
+include_warnings=true
+esproposal.class_static_fields=enable
+esproposal.class_instance_fields=enable
+esproposal.export_star_as=enable
+suppress_comment=\\(.\\|\n\\)*\\$TODO_FlowFixMe
+module.name_mapper='.*(.graphql)' -> '{}'
+module.name_mapper='.*(.aql.html)' -> 'WEBPACK_STRING'
+module.file_ext=.js
+module.file_ext=.jsx
+module.file_ext=.json
+module.file_ext=.html
+module.file_ext=.aql
+module.file_ext=.graphql
+
+[version]
+0.72.0
