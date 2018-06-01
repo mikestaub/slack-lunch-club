@@ -1,0 +1,20 @@
+{
+  "name": "global-aws",
+  "version": "1.0.0",
+  "description": "AWS global resources for slack-lunch-club",
+  "author": "Michael Staub (https://github.com/mikestaub)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikestaub/slack-lunch-club.git"
+  },
+  "scripts": {
+    "encrypt": "simple-secrets encrypt",
+    "decrypt": "simple-secrets decrypt",
+    "deploy": "NODE_ENV=aws serverless deploy --force",
+    "list-outputs": "NODE_ENV=aws serverless info --verbose"
+  },
+  "devDependencies": {
+    "@mikestaub/simple-secrets": "2.0.0"
+  }
+}
