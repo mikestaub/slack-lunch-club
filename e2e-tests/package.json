@@ -1,0 +1,27 @@
+{
+  "name": "slack-lunch-club-e2e",
+  "version": "1.0.0",
+  "description": "End-to-end test suite for slack-lunch-club",
+  "author": "Michael Staub (https://github.com/mikestaub)",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mikestaub/slack-lunch-club.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mikestaub/slack-lunch-club/issues"
+  },
+  "scripts": {
+    "test": "jest --verbose --runInBand"
+  },
+  "devDependencies": {
+    "@babel/core": "7.0.0-beta.49",
+    "@babel/preset-env": "7.0.0-beta.49",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-jest": "23.0.1",
+    "cookie": "0.3.1",
+    "jest": "23.0.1",
+    "puppeteer": "1.4.0"
+  },
+  "keywords": ["jest", "puppeteer"]
+}

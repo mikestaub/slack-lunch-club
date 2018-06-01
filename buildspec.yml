@@ -1,0 +1,38 @@
+# https://docs.aws.amazon.com/codebuild/latest/userguide/build-spec-ref.html
+# https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-env-vars.html
+
+# TODO do advanced canary deployments
+# https://github.com/davidgf/serverless-plugin-canary-deployments
+# https://github.com/serverless/serverless/issues/4595
+# https://github.com/davidgf/serverless-plugin-canary-deployments
+
+version: 0.2
+
+env:
+  variables:
+    CI: true
+    TEST_EMAILS_ONLY: true
+  parameter-store:
+    ENCRYPTION_KEY: /slack-lunch-club/ENCRYPTION_KEY
+            
+phases:
+  install:
+    commands:
+      - scripts/install-npm.sh
+      - export $(npm run --silent print-env-vars)
+      # TODO this logic should live in a lambda function
+      # to avoid unneccessary builds
+      - scripts/skip-build.sh
+  build:
+    commands:
+      - scripts/build.sh
+  post_build:
+    commands:
+      - scripts/post-build.sh
+
+# TODO fix problems with sym links
+# cache:
+#   paths:
+#     - 'node_modules/**/*'
+#     - 'backend/node_modules/**/*'
+#     - 'frontend/node_modules/**/*'
