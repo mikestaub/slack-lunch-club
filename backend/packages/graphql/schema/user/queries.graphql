@@ -1,0 +1,29 @@
+type Query {
+  getCurrentUser: GetCurrentUserResult
+  getUsersRequestingMatch: GetUsersRequestingMatchResult
+  getUsersByProps(input: GetUsersByPropsInput): GetUsersByPropsResult
+}
+
+input GetUsersByPropsInput {
+  filter: UserInput = {}
+  pagination: PaginationInput = {}
+}
+
+type GetUsersByPropsResult implements Connection {
+  totalCount: Int!
+  edges: [UsersEdge]!
+  pageInfo: PageInfo!
+}
+
+type GetCurrentUserResult {
+  user: User!
+}
+
+type GetUsersRequestingMatchResult {
+  possibleMatchesForUsers: [PossibleMatchesForUser]!
+}
+
+type PossibleMatchesForUser {
+  userId: ID!
+  possibleMatches: [ID]!
+}

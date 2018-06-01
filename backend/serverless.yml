@@ -1,0 +1,103 @@
+service: slack-lunch-club-backend
+
+frameworkVersion: '>=1.27.3 <2.0.0'
+
+provider:
+  name: aws
+  region: us-east-1
+  cfLogs: true
+  runtime: nodejs6.10
+  vpc:
+    securityGroupIds:
+      - ${self:custom.globalAws.LambdaSecurityGroup}
+    subnetIds:
+      - ${self:custom.globalAws.PrivateSubnet}
+  iamRoleStatements:
+    - Effect: 'Allow'
+      Action:
+        - 'lambda:InvokeFunction'
+      Resource: '*'
+    - Effect: 'Allow'
+      Action:
+        - 's3:getObject'
+        - 's3:putObject'
+      Resource: 'arn:aws:s3:::${self:custom.secrets.DB_BACKUP_BUCKET_NAME}/*'
+  stage: ${opt:stage}
+  deploymentBucket: ${self:service}-deployment
+  environment:
+    NODE_ENV: ${opt:stage}
+    DOMAIN_NAME: ${self:custom.secrets.DOMAIN_NAME}
+    FRONTEND_DOMAIN_NAME: ${self:custom.secrets.FRONTEND_DOMAIN_NAME}
+    DB_HOST: ${self:custom.secrets.DB_HOST}
+    DB_PASS: ${self:custom.secrets.DB_PASS}
+    DB_USER: ${self:custom.secrets.DB_USER}
+    DB_NAME: ${self:custom.secrets.DB_NAME}
+    DB_BACKUP_BUCKET_NAME: ${self:custom.secrets.DB_BACKUP_BUCKET_NAME}
+    SMTP_HOST: ${self:custom.secrets.SMTP_HOST}
+    SMTP_USER: ${self:custom.secrets.SMTP_USER}
+    SMTP_PASS: ${self:custom.secrets.SMTP_PASS}
+    NOREPLY_EMAIL_ADDRESS: ${self:custom.secrets.NOREPLY_EMAIL_ADDRESS}
+    TEST_EMAILS_ONLY: ${self:custom.secrets.TEST_EMAILS_ONLY}
+    TEST_EMAIL_DOMAIN: ${self:custom.secrets.TEST_EMAIL_DOMAIN}
+    SLACK_CLIENT_ID: ${self:custom.secrets.SLACK_CLIENT_ID}
+    SLACK_CLIENT_SECRET: ${self:custom.secrets.SLACK_CLIENT_SECRET}
+    AUTH_TOKEN_SECRET: ${self:custom.secrets.AUTH_TOKEN_SECRET}
+
+plugins: # order matters
+  - serverless-plugin-warmup
+  - '@keboola/serverless-papertrail-logging'
+  - serverless-webpack
+  - serverless-offline
+  - serverless-domain-manager
+  - serverless-content-encoding
+
+custom:
+  customDomain:
+    domainName: ${self:custom.secrets.DOMAIN_NAME}
+    hostedZoneId: ${self:custom.secrets.HOSTED_ZONE_ID}
+    createRoute53Record: true
+    endpointType: regional
+  papertrail:
+    host: ${self:custom.globalAws.PapertrailHost}
+    port: ${self:custom.globalAws.PapertrailPort}
+  secrets: ${file(./getSecrets.js)}
+  globalAws:
+    PrivateSubnet: ${cf:slack-lunch-club-global-aws.PrivateSubnet}
+    LambdaSecurityGroup: ${cf:slack-lunch-club-global-aws.LambdaSecurityGroup}
+    PapertrailHost: ${cf:slack-lunch-club-global-aws.PapertrailHost}
+    PapertrailPort: ${cf:slack-lunch-club-global-aws.PapertrailPort}
+    HostedZoneName: ${cf:slack-lunch-club-global-aws.HostedZoneName}
+    PrivateHostedZoneId: ${cf:slack-lunch-club-global-aws.PrivateHostedZoneId}
+    PublicHostedZoneId: ${cf:slack-lunch-club-global-aws.PublicHostedZoneId}
+  contentEncoding:
+    minimumCompressionSize: 0
+
+functions:
+  express-app:
+    description: 'Authentication and graphQL server.'
+    handler: index.expressApp
+    memorySize: 3008
+    timeout: 30
+    events:
+      - http: any {proxy+}
+      - http: any /
+    warmup: true
+  match-mailer:
+    description: 'Email every user their weekly match.'
+    handler: index.matchMailer
+    memorySize: 3008
+    timeout: 300 # 5 min
+    events:
+      - schedule: cron(0 12 ? * sat *) # every saturday at noon
+  db-backup:
+    description: 'Backup the database to S3.'
+    handler: index.dbBackup
+    memorySize: 3008
+    timeout: 300
+    events:
+      - schedule: cron(0 0 ? * * *) # every day at midnight
+  db-restore:
+    description: 'Restore the database from a backup. (must be triggered manually from AWS Console)'
+    handler: index.dbRestore
+    memorySize: 3008
+    timeout: 300

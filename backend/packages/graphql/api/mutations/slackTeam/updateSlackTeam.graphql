@@ -1,0 +1,9 @@
+mutation updateSlackTeam($input: UpdateSlackTeamInput!) {
+  updateSlackTeam(input: $input) {
+    slackTeam {
+      id
+      slackApiId
+      name
+    }
+  }
+}

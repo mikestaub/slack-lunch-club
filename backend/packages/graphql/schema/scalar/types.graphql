@@ -1,0 +1,9 @@
+scalar UUID
+
+scalar Email
+
+scalar URL
+
+scalar DateTime
+
+scalar String

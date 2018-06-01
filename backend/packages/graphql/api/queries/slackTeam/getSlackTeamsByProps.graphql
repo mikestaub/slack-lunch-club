@@ -1,0 +1,36 @@
+#import "../../fragments/AllUserProps.graphql"
+
+query getSlackTeamsByProps($input: GetSlackTeamsByPropsInput!) {
+  getSlackTeamsByProps(input: $input) {
+    totalCount
+    edges {
+      cursor
+      node {
+        id
+        slackApiId
+        name
+        userMemberConnection {
+          totalCount
+          edges {
+            cursor
+            node {
+              ...AllUserProps
+            }
+          }
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+            startCursor
+            endCursor
+          }
+        }
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

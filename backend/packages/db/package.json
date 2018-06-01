@@ -1,0 +1,15 @@
+{
+  "name": "slack-lunch-club-db",
+  "version": "1.0.0",
+  "description": "Simple graph database library",
+  "main": "index.js",
+  "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
+  "license": "MIT",
+  "scripts": {},
+  "devDependencies": {},
+  "dependencies": {
+    "arangojs": "6.2.4",
+    "p-each-series": "1.0.0",
+    "uuid": "3.2.1"
+  }
+}

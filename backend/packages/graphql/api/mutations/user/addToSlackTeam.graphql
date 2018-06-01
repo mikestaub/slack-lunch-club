@@ -1,0 +1,5 @@
+mutation addToSlackTeam($input: AddToSlackTeamInput!) {
+  addToSlackTeam(input: $input) {
+    success
+  }
+}

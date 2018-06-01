@@ -1,0 +1,92 @@
+type User implements Node {
+  id: ID!
+  name: String!
+  email: Email!
+  profilePhoto: URL!
+  role: USER_ROLE
+  matchEveryWeek: Boolean
+  availableDays: UserAvailableDays
+  location: GeoLocation
+  lastMatchEmailSent: DateTime
+  matchedConnection(input: MatchedConnectionInput = {}): UserMatchedConnection
+  slackTeamMemberConnection(
+    input: SlackTeamMemberConnectionInput = {}
+  ): SlackTeamMemberConnection
+  createdAt: DateTime!
+}
+
+input UserInput {
+  id: ID
+  name: String
+  email: Email
+  profilePhoto: URL
+  role: USER_ROLE
+  matchEveryWeek: Boolean
+  availableDays: UserAvailableDaysInput
+  location: PhysicalLocationInput
+  lastMatchEmailSent: DateTime
+  createdAt: DateTime
+}
+
+input MatchedConnectionInput {
+  filter: UserInput = {}
+  pagination: PaginationInput = {}
+}
+
+type UserMatchedConnection implements Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [UsersEdge]!
+}
+
+input SlackTeamMemberConnectionInput {
+  filter: SlackTeamInput = {}
+  pagination: PaginationInput = {}
+}
+
+type SlackTeamMemberConnection implements Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [SlackTeamsEdge]!
+}
+
+type UsersEdge implements Edge {
+  cursor: Cursor!
+  node: User!
+  createdAt: DateTime
+}
+
+enum USER_ROLE {
+  DEFAULT
+  ADMIN
+}
+
+type UserAvailableDays {
+  monday: Boolean!
+  tuesday: Boolean!
+  wednesday: Boolean!
+  thursday: Boolean!
+  friday: Boolean!
+}
+
+input UserAvailableDaysInput {
+  monday: Boolean!
+  tuesday: Boolean!
+  wednesday: Boolean!
+  thursday: Boolean!
+  friday: Boolean!
+}
+
+type GeoLocation {
+  formattedAddress: String
+  key: String
+  lat: Float!
+  lng: Float!
+}
+
+input PhysicalLocationInput {
+  formattedAddress: String
+  key: String
+  lat: Float!
+  lng: Float!
+}

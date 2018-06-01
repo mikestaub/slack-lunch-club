@@ -1,0 +1,5 @@
+mutation notifyUnmatchedUsers($input: NotifyUnmatchedUsersInput!) {
+  notifyUnmatchedUsers(input: $input) {
+    success
+  }
+}

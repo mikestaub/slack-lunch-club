@@ -1,0 +1,8 @@
+.serverless/
+.webpack/
+build/
+coverage/
+jest_*
+maildev/
+node_modules/
+flow-types/

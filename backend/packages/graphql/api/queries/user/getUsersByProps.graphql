@@ -1,0 +1,19 @@
+#import "../../fragments/AllUserProps.graphql"
+
+query getUsersByProps($input: GetUsersByPropsInput!) {
+  getUsersByProps(input: $input) {
+    totalCount
+    edges {
+      cursor
+      node {
+        ...AllUserProps
+      }
+    }
+    pageInfo {
+      hasNextPage
+      hasPreviousPage
+      startCursor
+      endCursor
+    }
+  }
+}

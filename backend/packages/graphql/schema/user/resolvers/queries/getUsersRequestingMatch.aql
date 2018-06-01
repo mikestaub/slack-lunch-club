@@ -1,0 +1,44 @@
+WITH users, slack_teams, matched, member
+RETURN MERGE (
+  FOR u IN users
+    FILTER
+      u.location AND (
+        u.lastMatchEmailSent == null OR
+        DATE_TIMESTAMP(u.lastMatchEmailSent) <= DATE_TIMESTAMP(DATE_SUBTRACT(DATE_NOW(), @matchPeriodInDays, "day"))
+      )
+    LET alreadyMatched = (
+      FOR v IN 1..1 ANY u matched
+      RETURN v.id
+    )
+    LET usersWithSharedSlackTeam = (
+      FOR v IN 2..2 ANY u member
+        FILTER v.id != u.id
+      RETURN v.id
+    )
+    LET possibleMatches = (
+      FOR p IN WITHIN(users, u.location.lat, u.location.lng, @MAX_DISTANCE)
+        FILTER
+          u.id != p.id
+          AND (
+            p.id NOT IN alreadyMatched
+          )
+          AND (
+            p.id IN usersWithSharedSlackTeam
+          )
+          AND (
+            p.lastMatchEmailSent == null OR
+            DATE_TIMESTAMP(u.lastMatchEmailSent) <= DATE_TIMESTAMP(DATE_SUBTRACT(DATE_NOW(), @matchPeriodInDays, "day"))
+          )
+          AND (
+            (u.availableDays.monday AND p.availableDays.monday) OR
+            (u.availableDays.tuesday AND p.availableDays.tuesday) OR
+            (u.availableDays.wednesday AND p.availableDays.wednesday) OR
+            (u.availableDays.thursday AND p.availableDays.thursday) OR
+            (u.availableDays.friday AND p.availableDays.friday)
+          )
+      RETURN p.id
+    )
+  RETURN {
+    [u.id]: possibleMatches
+  }
+)

@@ -1,0 +1,32 @@
+type Mutation {
+  createSlackTeam(input: CreateSlackTeamInput!): CreateSlackTeamResult
+  updateSlackTeam(input: UpdateSlackTeamInput!): UpdateSlackTeamResult
+  deleteSlackTeam(input: DeleteSlackTeamInput!): DeleteSlackTeamResult
+}
+
+input CreateSlackTeamInput {
+  slackApiId: String!
+  name: String!
+}
+
+type CreateSlackTeamResult {
+  slackTeam: SlackTeam!
+}
+
+input UpdateSlackTeamInput {
+  id: ID!
+  slackApiId: String
+  name: String
+}
+
+type UpdateSlackTeamResult {
+  slackTeam: SlackTeam!
+}
+
+input DeleteSlackTeamInput {
+  id: ID!
+}
+
+type DeleteSlackTeamResult {
+  success: Boolean!
+}

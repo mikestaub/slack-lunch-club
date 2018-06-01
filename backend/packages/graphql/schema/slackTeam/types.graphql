@@ -1,0 +1,26 @@
+type SlackTeam implements Node {
+  id: ID!
+  slackApiId: String!
+  name: String!
+  createdAt: DateTime!
+  userMemberConnection(
+    input: UserMemberConnectionInput = {}
+  ): UserMemberConnection
+}
+
+input SlackTeamInput {
+  id: ID
+  slackApiId: String
+  name: String
+}
+
+input UserMemberConnectionInput {
+  filter: UserInput = {}
+  pagination: PaginationInput = {}
+}
+
+type UserMemberConnection implements Connection {
+  totalCount: Int!
+  pageInfo: PageInfo!
+  edges: [UsersEdge]!
+}

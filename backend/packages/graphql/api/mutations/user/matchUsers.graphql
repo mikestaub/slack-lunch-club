@@ -1,0 +1,5 @@
+mutation matchUsers($input: MatchUsersInput!) {
+  matchUsers(input: $input) {
+    success
+  }
+}
