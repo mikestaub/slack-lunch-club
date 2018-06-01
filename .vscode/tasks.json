@@ -1,0 +1,17 @@
+{
+  // See http://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  // TODO delete this file when this feature is added: https://github.com/Microsoft/vscode/issues/13953
+  "version": "0.1.0",
+  "command": "sh", // for windows "command": "cmd"
+  "isShellCommand": true,
+  "args": ["-c"], // for windows "args": ["/C"]
+  "tasks": [
+    {
+      "taskName": "validate",
+      "suppressTaskName": true,
+      "args": ["npm run validate"],
+      "problemMatcher": ["$eslint-stylish"]
+    }
+  ]
+}
