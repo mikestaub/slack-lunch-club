@@ -1,0 +1,13 @@
+{
+  "name": "slack-lunch-club-backend-matcher",
+  "version": "1.0.0",
+  "description": "User matching service",
+  "main": "index.js",
+  "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
+  "license": "MIT",
+  "devDependencies": {},
+  "dependencies": {
+    "edmonds-blossom": "1.0.0",
+    "handlebars": "4.0.11"
+  }
+}
