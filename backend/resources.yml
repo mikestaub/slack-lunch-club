@@ -1,0 +1,25 @@
+Resources:
+  DnsCnameRecord:
+    Condition: isProduction
+    Type: AWS::Route53::RecordSet
+    Properties:
+      Name: "api.${self:custom.globalAws.HostedZoneName}"
+      HostedZoneId: ${self:custom.globalAws.PrivateHostedZoneId}
+      Type: CNAME
+      TTL: '900'
+      ResourceRecords:
+        - Fn::Join:
+          - ""
+          - - "https://"
+            - Fn::GetAtt:
+              - ApiGatewayRestApi
+              - RootResourceId
+            - ".execute-api."
+            - ${self:provider.region}
+            - ".amazonaws.com/production"
+
+Outputs:
+  DnsCnameRecord:
+    Condition: isProduction
+    Value:
+      Ref: DnsCnameRecord

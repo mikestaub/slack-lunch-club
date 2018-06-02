@@ -88,7 +88,7 @@ functions:
     memorySize: 3008
     timeout: 300 # 5 min
     events:
-      - schedule: cron(0 12 ? * sat *) # every saturday at noon
+      - schedule: cron(0 12 ? * sat *) # every saturday at noon (UTC)
   db-backup:
     description: 'Backup the database to S3.'
     handler: index.dbBackup
@@ -101,3 +101,11 @@ functions:
     handler: index.dbRestore
     memorySize: 3008
     timeout: 300
+
+resources:
+  Conditions:
+    isProduction:
+      Fn::Equals:
+        - ${opt:stage}
+        - 'production'
+  Resources: ${file(./resources.yml):Resources}
