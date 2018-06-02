@@ -106,6 +106,20 @@ Resources:
             - DomainName
         HostedZoneId: 'Z2FDTNDATAQYW2' # hardcoded by AWS
 
+  DnsAliasRecordPrivate2:
+    Type: AWS::Route53::RecordSet
+    Condition: isProduction
+    Properties:
+      Name: ${self:custom.domainName}
+      HostedZoneId: ${self:custom.globalAws.PrivateHostedZoneId}
+      Type: A
+      AliasTarget:
+        DNSName:
+          Fn::GetAtt:
+            - WebsiteCdn
+            - DomainName
+        HostedZoneId: 'Z2FDTNDATAQYW2' # hardcoded by AWS
+
   DnsAliasRecordPublic:
     Type: AWS::Route53::RecordSet
     Condition: isProduction
@@ -138,3 +152,7 @@ Outputs:
     Condition: isNotProduction
     Value:
       Ref: DnsAliasRecordPrivate
+  DnsAliasRecordPrivate2:
+    Condition: isProduction
+    Value:
+      Ref: DnsAliasRecordPrivate2
