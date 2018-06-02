@@ -1,5 +1,5 @@
-// flow-typed signature: 82850c0713ac949389a14f23682a61d1
-// flow-typed version: f64555589a/styled-components_v3.x.x/flow_>=v0.57.x
+// flow-typed signature: 8e8f10c16b7f1b7249a269ae3938551e
+// flow-typed version: b0f6644f4d/styled-components_v3.x.x/flow_>=v0.57.x
 
 // @flow
 
@@ -347,6 +347,7 @@ declare module 'styled-components' {
   declare export type ReactComponentStyled<Props>                                = $npm$styledComponents$ReactComponentStyled<Props, ComponentListKeys>;
   declare export type ReactComponentStyledTaggedTemplateLiteral<Props>           = $npm$styledComponents$ReactComponentStyledTaggedTemplateLiteralWithComponent<Props, ComponentListKeys>;
 
+  declare export var css: TaggedTemplateLiteral<Array<Interpolation>>;
   declare export var injectGlobal: TaggedTemplateLiteral<void>;
   declare export var keyframes: TaggedTemplateLiteral<string>;
   declare export var withTheme: $npm$styledComponents$WithTheme;
