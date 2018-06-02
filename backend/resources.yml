@@ -11,9 +11,7 @@ Resources:
         - Fn::Join:
           - ""
           - - "https://"
-            - Fn::GetAtt:
-              - ApiGatewayRestApi
-              - RootResourceId
+            - Ref: ApiGatewayRestApi
             - ".execute-api."
             - ${self:provider.region}
             - ".amazonaws.com/production"
