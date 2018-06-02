@@ -285,18 +285,27 @@ Resources:
           FromPort: '80'
           ToPort: '80'
           CidrIp: 0.0.0.0/0
+          Description: HTTP
         - IpProtocol: tcp
           FromPort: '443'
           ToPort: '443'
           CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp # SMTP
+          Description: HTTPS
+        - IpProtocol: tcp
           FromPort: '465'
           ToPort: '465'
           CidrIp: 0.0.0.0/0
+          Description: SMTP mailgun.com
         - IpProtocol: tcp
           FromPort: ${self:custom.secrets.PAPERTRAIL_PORT}
           ToPort: ${self:custom.secrets.PAPERTRAIL_PORT}
-          CidrIp: 169.46.82.0/24
+          CidrIp: 169.46.82.160/27
+          Description: papertrailapp.com
+        - IpProtocol: tcp
+          FromPort: ${self:custom.secrets.PAPERTRAIL_PORT}
+          ToPort: ${self:custom.secrets.PAPERTRAIL_PORT}
+          CidrIp: 10.0.1.0/24
+          Description: papertrailapp.com (NAT)
       SecurityGroupEgress:
         - IpProtocol: tcp
           FromPort: '0'
