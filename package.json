@@ -27,6 +27,8 @@
     "install:all": "npm run install:npm && npm run install:types",
     "install:npm": "scripts/install-npm.sh",
     "install:types": "scripts/install-types.sh",
+    "ncu:check": "scripts/check-updates.sh",
+    "ncu:update": "scripts/check-updates.sh -u",
     "lint": "cd backend && npm run lint && cd ../frontend && npm run lint",
     "report-coverage":
       "cd backend && npm run report-coverage && cd ../frontend && npm run report-coverage",
