@@ -1,4 +1,46 @@
 Resources:
+  RegionalDomainLambda:
+    Condition: isProduction
+    Type: AWS::Lambda::Function
+    Properties:
+      Runtime: python2.7
+      Handler: index.handler
+      Role:
+        Fn::GetAtt:
+          - IamRoleLambdaExecution
+          - Arn
+      Timeout: 50
+      Code:
+        ZipFile: |
+          import cfnresponse
+          import json
+          import boto3
+
+          client = boto3.client('apigateway')
+          def handler(event, context):
+              response_data = {}
+              try:
+                  domainName = event['ResourceProperties']['DomainName']
+                  regional_domain_name = client.get_domain_name(domainName=domainName)['regionalDomainName']
+                  print "test", regional_domain_name
+                  response_data['value'] = regional_domain_name
+                  cfnresponse.send(event, context, cfnresponse.SUCCESS,response_data, "RegionalDomainNameString")
+              except Exception as e:
+                  response_data['exception'] = e
+                  cfnresponse.send(event, context, cfnresponse.FAILED, response_data, "RegionalDomainNameString")
+
+  # TODO: remove this workaround when cloudformation supports regionalDomainName attribute
+  # https://stackoverflow.com/questions/48532841/how-to-get-the-target-domain-name-of-a-custom-domain-for-regional-aws-api-gatewa
+  RegionalDomain:
+    Condition: isProduction
+    Type: Custom::CustomResource
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+          - RegionalDomainLambda
+          - Arn
+      DomainName: "api.${self:custom.globalAws.HostedZoneName}"
+
   DnsCnameRecord:
     Condition: isProduction
     Type: AWS::Route53::RecordSet
@@ -8,13 +50,9 @@ Resources:
       Type: CNAME
       TTL: '900'
       ResourceRecords:
-        - Fn::Join:
-          - ""
-          - - "https://"
-            - Ref: ApiGatewayRestApi
-            - ".execute-api."
-            - ${self:provider.region}
-            - ".amazonaws.com/production"
+        - Fn::GetAtt:
+          - RegionalDomain
+          - value
 
 Outputs:
   DnsCnameRecord:
