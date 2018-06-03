@@ -19,6 +19,10 @@ provider:
       Resource: '*'
     - Effect: 'Allow'
       Action:
+        - 'apigateway:GET'
+      Resource: '*'
+    - Effect: 'Allow'
+      Action:
         - 's3:getObject'
         - 's3:putObject'
       Resource: 'arn:aws:s3:::${self:custom.secrets.DB_BACKUP_BUCKET_NAME}/*'
