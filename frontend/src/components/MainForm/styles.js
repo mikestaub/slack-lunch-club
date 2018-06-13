@@ -4,8 +4,8 @@ const MainFormContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
   padding-bottom: 30px;
+  min-height: 500px;
 `;
 
 const Form = styled.form`
