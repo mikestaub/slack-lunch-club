@@ -40,7 +40,8 @@ function AvailableDaysPicker(props) {
         <DayContainer>
           <DayOfMonth>
             {`${shortDay[day]}, ${dayjs()
-              .add(idx, "days")
+              .startOf("week")
+              .add(idx + 1, "day")
               .format("Do")}`}
           </DayOfMonth>
           <CheckBox

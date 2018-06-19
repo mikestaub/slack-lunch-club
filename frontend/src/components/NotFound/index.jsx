@@ -1,12 +1,14 @@
 import React from "react";
+import { Emoji } from "emoji-mart";
+
+import { Container } from "./styles";
 
 function NotFound() {
   return (
-    <div>
-      <h1>
-        404 <small>Not Found :(</small>
-      </h1>
-    </div>
+    <Container>
+      <h1>Page Not Found</h1>
+      <Emoji emoji="slightly_frowning_face" size={50} />
+    </Container>
   );
 }
 
