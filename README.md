@@ -279,7 +279,7 @@ The end result is a first-class developer experience, which aims to provide a co
     ```
 1.  wait about 5 minutes for packer to finish
 1.  copy the ami id, paste it into `./global-aws/resources.yml:ArangoDBInstance.Properties.ImageId`, and run `cd ./global-aws && npm run deploy` to create a new EC2 instance
-1.  once the new EC2 instance is running, copy its private IP address, paste it into `./backend/secrets.yml:DB_HOST`, run `npm run encrypt`, and push the new `secrets.js.encrypted` file to git
+1.  once the new EC2 instance is running, copy its private IP address, paste and update the arangodb.YOURDOMAIN.COM A record in all hosted zones
 1.  after the new db instance is deployed, you have to VPN into the web UI, create the databases and users, then restore the data with the db-restore lambda function. Be **very** careful.
 
 ## Optional ( recommended ) extras
