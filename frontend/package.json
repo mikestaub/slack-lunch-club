@@ -32,7 +32,7 @@
     "prop-types": "15.6.2",
     "react": "16.4.1",
     "react-app-rewire-styled-components": "3.0.2",
-    "react-confirm-alert": "^2.0.4",
+    "react-confirm-alert": "2.0.2",
     "react-dom": "16.4.1",
     "react-ga": "2.5.3",
     "react-google-maps": "9.4.5",

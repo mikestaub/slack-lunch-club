@@ -27,14 +27,14 @@
     "test-db-restore": "serverless invoke local --function db-restore --stage development --data '{\"s3Key\": \"S3_KEY_PLACE_HOLDER\"}'"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.51",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.51",
-    "@babel/plugin-proposal-export-default-from": "7.0.0-beta.51",
-    "@babel/plugin-proposal-function-bind": "7.0.0-beta.51",
-    "@babel/plugin-transform-runtime": "7.0.0-beta.51",
-    "@babel/preset-env": "7.0.0-beta.51",
-    "@babel/preset-flow": "7.0.0-beta.51",
-    "@babel/register": "7.0.0-beta.51",
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.42",
+    "@babel/plugin-proposal-export-default-from": "7.0.0-beta.42",
+    "@babel/plugin-proposal-function-bind": "7.0.0-beta.42",
+    "@babel/plugin-transform-runtime": "7.0.0-beta.42",
+    "@babel/preset-env": "7.0.0-beta.42",
+    "@babel/preset-flow": "7.0.0-beta.42",
+    "@babel/register": "7.0.0-beta.42",
     "@keboola/serverless-papertrail-logging": "1.1.1",
     "@mikestaub/simple-secrets": "2.0.1",
     "babel-core": "7.0.0-bridge.0",
@@ -67,7 +67,7 @@
     "webpack-permissions-plugin": "1.0.0"
   },
   "dependencies": {
-    "@babel/runtime": "7.0.0-beta.51",
+    "@babel/runtime": "7.0.0-beta.42",
     "lodash": "4.17.10"
   },
   "workspaces": [
