@@ -8,8 +8,8 @@
   "scripts": {},
   "devDependencies": {},
   "dependencies": {
-    "arangojs": "6.2.4",
+    "arangojs": "6.3.0",
     "p-each-series": "1.0.0",
-    "uuid": "3.2.1"
+    "uuid": "3.3.2"
   }
 }

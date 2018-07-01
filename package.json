@@ -13,58 +13,54 @@
   },
   "proxy": "http://localhost:4000",
   "scripts": {
-    "debug":
-      "concurrently --kill-others 'cd backend && npm run debug' 'react-scripts start'",
+    "debug": "concurrently --kill-others 'cd backend && npm run debug' 'react-scripts start'",
     "clean": "docker-compose down",
     "dev": "npm run up && docker exec -it slack-lunch-club-devbox bash",
     "encrypt": "simple-secrets encrypt",
     "decrypt": "simple-secrets decrypt",
     "restart": "docker-compose restart",
-    "deploy:production":
-      "cd backend && npm run deploy:production && cd ../frontend && npm run deploy:production",
-    "deploy:staging":
-      "cd backend && npm run deploy:staging && cd ../frontend && npm run deploy:staging",
+    "deploy:production": "cd backend && npm run deploy:production && cd ../frontend && npm run deploy:production",
+    "deploy:staging": "cd backend && npm run deploy:staging && cd ../frontend && npm run deploy:staging",
     "install:all": "npm run install:npm && npm run install:types",
     "install:npm": "scripts/install-npm.sh",
     "install:types": "scripts/install-types.sh",
     "ncu:check": "scripts/check-updates.sh",
     "ncu:update": "scripts/check-updates.sh -u",
     "lint": "cd backend && npm run lint && cd ../frontend && npm run lint",
-    "report-coverage":
-      "cd backend && npm run report-coverage && cd ../frontend && npm run report-coverage",
+    "report-coverage": "cd backend && npm run report-coverage && cd ../frontend && npm run report-coverage",
     "prettier": "prettier --write '**/*.{js,jsx}'",
     "print-env-vars": "NODE_ENV=global simple-secrets print",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
-    "start":
-      "concurrently --kill-others 'npm run start:frontend' 'npm run start:backend'",
+    "start": "concurrently --kill-others 'npm run start:frontend' 'npm run start:backend'",
     "test:backend": "cd backend && npm test",
     "test:e2e": "cd e2e-tests && npm test",
     "test:frontend": "cd frontend && npm test",
     "test": "npm run test:backend && npm run test:frontend && npm run test:e2e",
     "validate": "npm run lint && flow && lint-staged",
     "up": "docker-compose up -d",
-    "precommit": "npm run validate",
-    "flow-coverage":
-      "rm -rf ./flow-coverage && flow-coverage-report --config ./flow-coverage.config.json"
+    "flow-coverage": "rm -rf ./flow-coverage && flow-coverage-report --config ./flow-coverage.config.json"
   },
   "lint-staged": {
-    "*.{js,json,css,md}": ["npm run prettier", "git add"]
+    "*.{js,json,css,md}": [
+      "npm run prettier",
+      "git add"
+    ]
   },
   "devDependencies": {
-    "@mikestaub/simple-secrets": "2.0.0",
-    "babel-eslint": "8.2.3",
-    "concurrently": "3.5.1",
+    "@mikestaub/simple-secrets": "2.0.1",
+    "babel-eslint": "8.2.5",
+    "concurrently": "3.6.0",
     "eslint": "4.19.1",
     "eslint-config-prettier": "2.9.0",
-    "eslint-plugin-flowtype": "2.46.3",
-    "eslint-plugin-jest": "21.15.1",
-    "flow-bin": "0.72.0",
+    "eslint-plugin-flowtype": "2.49.3",
+    "eslint-plugin-jest": "21.17.0",
+    "flow-bin": "0.75.0",
     "flow-coverage-report": "0.5.0",
     "flow-typed": "2.4.0",
-    "husky": "0.14.3",
-    "lint-staged": "7.1.2",
-    "prettier": "1.12.1"
+    "husky": "0.15.0-rc.13",
+    "lint-staged": "7.2.0",
+    "prettier": "1.13.7"
   },
   "keywords": [
     "serverless",
@@ -79,5 +75,10 @@
     "flow",
     "prettier",
     "eslint"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run validate"
+    }
+  }
 }

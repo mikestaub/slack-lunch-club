@@ -9,7 +9,7 @@
   "devDependencies": {},
   "dependencies": {
     "express-winston": "2.5.1",
-    "nodemailer": "4.6.5",
-    "winston": "2.4.2"
+    "nodemailer": "4.6.7",
+    "winston": "2.4.3"
   }
 }

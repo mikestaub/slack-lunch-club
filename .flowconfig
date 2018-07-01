@@ -9,6 +9,10 @@
 flow-typed/
 backend/flow-types/
 
+[lints]
+# TODO: https://github.com/flowtype/flow-typed/issues/2407
+deprecated-call-syntax=off
+
 [options]
 include_warnings=true
 esproposal.class_static_fields=enable
@@ -25,4 +29,4 @@ module.file_ext=.aql
 module.file_ext=.graphql
 
 [version]
-0.72.0
+0.75.0
