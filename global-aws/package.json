@@ -15,6 +15,6 @@
     "list-outputs": "NODE_ENV=aws serverless info --verbose"
   },
   "devDependencies": {
-    "@mikestaub/simple-secrets": "2.0.0"
+    "@mikestaub/simple-secrets": "2.0.1"
   }
 }

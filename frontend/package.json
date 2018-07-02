@@ -14,12 +14,9 @@
   "proxy": "http://localhost:4000",
   "scripts": {
     "analyze": "source-map-explorer build/static/js/main.*",
-    "build":
-      "react-app-rewired build && sw-precache --config=sw-precache.config.js",
-    "deploy:staging":
-      "env-cmd .env.staging npm run build && serverless deploy --force --stage staging --domainName staging.slacklunch.club",
-    "deploy:production":
-      "env-cmd .env.production npm run build && serverless deploy --force --stage production --domainName slacklunch.club",
+    "build": "react-app-rewired build && sw-precache --config=sw-precache.config.js",
+    "deploy:staging": "env-cmd .env.staging npm run build && serverless deploy --force --stage staging --domainName staging.slacklunch.club",
+    "deploy:production": "env-cmd .env.production npm run build && serverless deploy --force --stage production --domainName slacklunch.club",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext .js,.jsx && stylelint src/**/*.{js,jsx}",
     "report-coverage": "echo TODO",
@@ -27,27 +24,27 @@
     "test": "react-app-rewired test --env=jsdom"
   },
   "dependencies": {
-    "common-tags": "1.7.2",
-    "dayjs": "1.6.3",
+    "common-tags": "1.8.0",
+    "dayjs": "1.6.10",
     "emoji-mart": "2.6.1",
     "js-cookie": "2.2.0",
     "lodash": "4.17.10",
-    "prop-types": "15.6.1",
-    "react": "16.4.0",
+    "prop-types": "15.6.2",
+    "react": "16.4.1",
     "react-app-rewire-styled-components": "3.0.2",
     "react-confirm-alert": "2.0.2",
-    "react-dom": "16.4.0",
-    "react-ga": "2.5.2",
+    "react-dom": "16.4.1",
+    "react-ga": "2.5.3",
     "react-google-maps": "9.4.5",
     "react-icons": "2.2.7",
-    "react-ink": "6.2.0",
+    "react-ink": "6.4.0",
     "react-progressive-bg-image": "3.0.0",
-    "react-router": "4.2.0",
-    "react-router-dom": "4.2.2",
+    "react-router": "4.4.0-alpha.1",
+    "react-router-dom": "4.4.0-alpha.1",
     "reset-css": "3.0.0",
-    "stickybits": "3.3.2",
-    "styled-components": "3.2.6",
-    "stylelint": "9.2.1",
+    "stickybits": "3.4.1",
+    "styled-components": "3.4.0-0",
+    "stylelint": "9.3.0",
     "stylelint-config-standard": "18.2.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.3.1",
@@ -59,8 +56,12 @@
     "eslint-config-react-app": "2.1.0",
     "react-app-rewired": "1.5.2",
     "react-scripts": "1.1.4",
-    "serverless-s3-deploy": "0.6.1",
+    "serverless-s3-deploy": "0.7.0",
     "source-map-explorer": "1.5.0"
   },
-  "keywords": ["react", "graphql", "styled-components"]
+  "keywords": [
+    "react",
+    "graphql",
+    "styled-components"
+  ]
 }

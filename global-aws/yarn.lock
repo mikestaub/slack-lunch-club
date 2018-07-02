@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@mikestaub/simple-secrets@2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@mikestaub/simple-secrets/-/simple-secrets-2.0.0.tgz#ee2498ff17abedb2aa63fae4f90739fb14e9824e"
+"@mikestaub/simple-secrets@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@mikestaub/simple-secrets/-/simple-secrets-2.0.1.tgz#59bc8251e1eb356a548efbea522955460ad590e2"
   dependencies:
     file-encryptor "0.1.1"
 
