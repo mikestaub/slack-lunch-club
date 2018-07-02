@@ -12,8 +12,6 @@ if [[ ! -z "$shouldUpdate" ]]; then
   semverLevel="major"
 fi
 
-echo $semverLevel
-
 ncu "${shouldUpdate}" --semverLevel "$semverLevel"
 ncu "${shouldUpdate}" --semverLevel "$semverLevel" --packageFile global-aws/package.json
 ncu "${shouldUpdate}" --semverLevel "$semverLevel" --packageFile frontend/package.json
