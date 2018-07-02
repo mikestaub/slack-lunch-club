@@ -20,7 +20,6 @@ flow-coverage
 package-lock.json
 backend/packages/graphql/build
 backend/maildev
-jest_*
 
 
 # serverless framework

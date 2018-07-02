@@ -3,7 +3,7 @@
 # fail fast
 set -e
 
-FLOW_VERSION=v0.72
+FLOW_VERSION=v0.75
 
 # we must run the command everywhere there is a package.json file
 
