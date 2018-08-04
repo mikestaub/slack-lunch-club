@@ -5,8 +5,9 @@ module.exports = {
   transform: {
     "^.+\\.graphql$": "jest-transform-graphql",
     "^.+\\.aql$": "jest-raw-loader",
-    "^.+\\.js$": "babel-jest",
     "^.+\\.html$": "html-loader-jest",
+    "^.+\\.js?$": "babel-jest",
+    "^.+\\.jsx?$": "babel-jest",
   },
   modulePathIgnorePatterns: ["/build/"],
   collectCoverageFrom: [
