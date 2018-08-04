@@ -22,6 +22,7 @@ module.exports = {
       },
     ],
     "@babel/flow",
+    "es201",
   ],
   sourceMaps: "inline",
   plugins,
