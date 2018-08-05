@@ -1,4 +1,4 @@
-// flow-typed signature: ed8ab5a9ed402e5c2d50140df09b2e33
+// flow-typed signature: a52cc05c0e65aa09ddbe6fde7def4b24
 // flow-typed version: <<STUB>>/tar_v4.4.4/flow_v0.75.0
 
 /**
@@ -51,6 +51,10 @@ declare module 'tar/lib/list' {
 }
 
 declare module 'tar/lib/mkdir' {
+  declare module.exports: any;
+}
+
+declare module 'tar/lib/mode-fix' {
   declare module.exports: any;
 }
 
@@ -128,6 +132,9 @@ declare module 'tar/lib/list.js' {
 }
 declare module 'tar/lib/mkdir.js' {
   declare module.exports: $Exports<'tar/lib/mkdir'>;
+}
+declare module 'tar/lib/mode-fix.js' {
+  declare module.exports: $Exports<'tar/lib/mode-fix'>;
 }
 declare module 'tar/lib/pack.js' {
   declare module.exports: $Exports<'tar/lib/pack'>;

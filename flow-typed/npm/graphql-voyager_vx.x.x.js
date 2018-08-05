@@ -1,4 +1,4 @@
-// flow-typed signature: cae375348fa700eab3946eb63f32ac2e
+// flow-typed signature: 87bcdf83f39d0b0db3a8ff6ef113e878
 // flow-typed version: <<STUB>>/graphql-voyager_v1.0.0-rc.19/flow_v0.75.0
 
 /**
@@ -46,6 +46,10 @@ declare module 'graphql-voyager/example/middleware/hapi' {
   declare module.exports: any;
 }
 
+declare module 'graphql-voyager/example/middleware/hapiLegacy' {
+  declare module.exports: any;
+}
+
 declare module 'graphql-voyager/example/middleware/koa' {
   declare module.exports: any;
 }
@@ -71,6 +75,10 @@ declare module 'graphql-voyager/middleware/express' {
 }
 
 declare module 'graphql-voyager/middleware/hapi' {
+  declare module.exports: any;
+}
+
+declare module 'graphql-voyager/middleware/hapiLegacy' {
   declare module.exports: any;
 }
 
@@ -113,6 +121,9 @@ declare module 'graphql-voyager/example/middleware/express.js' {
 declare module 'graphql-voyager/example/middleware/hapi.js' {
   declare module.exports: $Exports<'graphql-voyager/example/middleware/hapi'>;
 }
+declare module 'graphql-voyager/example/middleware/hapiLegacy.js' {
+  declare module.exports: $Exports<'graphql-voyager/example/middleware/hapiLegacy'>;
+}
 declare module 'graphql-voyager/example/middleware/koa.js' {
   declare module.exports: $Exports<'graphql-voyager/example/middleware/koa'>;
 }
@@ -133,6 +144,9 @@ declare module 'graphql-voyager/middleware/express.js' {
 }
 declare module 'graphql-voyager/middleware/hapi.js' {
   declare module.exports: $Exports<'graphql-voyager/middleware/hapi'>;
+}
+declare module 'graphql-voyager/middleware/hapiLegacy.js' {
+  declare module.exports: $Exports<'graphql-voyager/middleware/hapiLegacy'>;
 }
 declare module 'graphql-voyager/middleware/index.js' {
   declare module.exports: $Exports<'graphql-voyager/middleware/index'>;

@@ -1,4 +1,4 @@
-// flow-typed signature: 656cd97e98e631978ddaa638f6f4618b
+// flow-typed signature: bc4d1602a667cd56360b40c9375a008d
 // flow-typed version: <<STUB>>/aws-sdk_v2.266.1/flow_v0.75.0
 
 /**
@@ -234,6 +234,10 @@ declare module 'aws-sdk/clients/efs' {
   declare module.exports: any;
 }
 
+declare module 'aws-sdk/clients/eks' {
+  declare module.exports: any;
+}
+
 declare module 'aws-sdk/clients/elasticache' {
   declare module.exports: any;
 }
@@ -374,6 +378,10 @@ declare module 'aws-sdk/clients/machinelearning' {
   declare module.exports: any;
 }
 
+declare module 'aws-sdk/clients/macie' {
+  declare module.exports: any;
+}
+
 declare module 'aws-sdk/clients/marketplacecommerceanalytics' {
   declare module.exports: any;
 }
@@ -406,6 +414,10 @@ declare module 'aws-sdk/clients/mediastoredata' {
   declare module.exports: any;
 }
 
+declare module 'aws-sdk/clients/mediatailor' {
+  declare module.exports: any;
+}
+
 declare module 'aws-sdk/clients/migrationhub' {
   declare module.exports: any;
 }
@@ -426,6 +438,10 @@ declare module 'aws-sdk/clients/mturk' {
   declare module.exports: any;
 }
 
+declare module 'aws-sdk/clients/neptune' {
+  declare module.exports: any;
+}
+
 declare module 'aws-sdk/clients/opsworks' {
   declare module.exports: any;
 }
@@ -435,6 +451,10 @@ declare module 'aws-sdk/clients/opsworkscm' {
 }
 
 declare module 'aws-sdk/clients/organizations' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/clients/pi' {
   declare module.exports: any;
 }
 
@@ -775,6 +795,54 @@ declare module 'aws-sdk/lib/empty' {
 }
 
 declare module 'aws-sdk/lib/event_listeners' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/alloc-buffer' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/buffered-create-event-stream' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/build-message' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/event-message-chunker-stream' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/event-message-chunker' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/event-message-unmarshaller-stream' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/int64' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/parse-event' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/parse-message' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/split-message' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/streaming-create-event-stream' {
+  declare module.exports: any;
+}
+
+declare module 'aws-sdk/lib/event-stream/to-buffer' {
   declare module.exports: any;
 }
 
@@ -1250,6 +1318,9 @@ declare module 'aws-sdk/clients/ecs.js' {
 declare module 'aws-sdk/clients/efs.js' {
   declare module.exports: $Exports<'aws-sdk/clients/efs'>;
 }
+declare module 'aws-sdk/clients/eks.js' {
+  declare module.exports: $Exports<'aws-sdk/clients/eks'>;
+}
 declare module 'aws-sdk/clients/elasticache.js' {
   declare module.exports: $Exports<'aws-sdk/clients/elasticache'>;
 }
@@ -1355,6 +1426,9 @@ declare module 'aws-sdk/clients/lightsail.js' {
 declare module 'aws-sdk/clients/machinelearning.js' {
   declare module.exports: $Exports<'aws-sdk/clients/machinelearning'>;
 }
+declare module 'aws-sdk/clients/macie.js' {
+  declare module.exports: $Exports<'aws-sdk/clients/macie'>;
+}
 declare module 'aws-sdk/clients/marketplacecommerceanalytics.js' {
   declare module.exports: $Exports<'aws-sdk/clients/marketplacecommerceanalytics'>;
 }
@@ -1379,6 +1453,9 @@ declare module 'aws-sdk/clients/mediastore.js' {
 declare module 'aws-sdk/clients/mediastoredata.js' {
   declare module.exports: $Exports<'aws-sdk/clients/mediastoredata'>;
 }
+declare module 'aws-sdk/clients/mediatailor.js' {
+  declare module.exports: $Exports<'aws-sdk/clients/mediatailor'>;
+}
 declare module 'aws-sdk/clients/migrationhub.js' {
   declare module.exports: $Exports<'aws-sdk/clients/migrationhub'>;
 }
@@ -1394,6 +1471,9 @@ declare module 'aws-sdk/clients/mq.js' {
 declare module 'aws-sdk/clients/mturk.js' {
   declare module.exports: $Exports<'aws-sdk/clients/mturk'>;
 }
+declare module 'aws-sdk/clients/neptune.js' {
+  declare module.exports: $Exports<'aws-sdk/clients/neptune'>;
+}
 declare module 'aws-sdk/clients/opsworks.js' {
   declare module.exports: $Exports<'aws-sdk/clients/opsworks'>;
 }
@@ -1402,6 +1482,9 @@ declare module 'aws-sdk/clients/opsworkscm.js' {
 }
 declare module 'aws-sdk/clients/organizations.js' {
   declare module.exports: $Exports<'aws-sdk/clients/organizations'>;
+}
+declare module 'aws-sdk/clients/pi.js' {
+  declare module.exports: $Exports<'aws-sdk/clients/pi'>;
 }
 declare module 'aws-sdk/clients/pinpoint.js' {
   declare module.exports: $Exports<'aws-sdk/clients/pinpoint'>;
@@ -1663,6 +1746,42 @@ declare module 'aws-sdk/lib/empty.js' {
 }
 declare module 'aws-sdk/lib/event_listeners.js' {
   declare module.exports: $Exports<'aws-sdk/lib/event_listeners'>;
+}
+declare module 'aws-sdk/lib/event-stream/alloc-buffer.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/alloc-buffer'>;
+}
+declare module 'aws-sdk/lib/event-stream/buffered-create-event-stream.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/buffered-create-event-stream'>;
+}
+declare module 'aws-sdk/lib/event-stream/build-message.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/build-message'>;
+}
+declare module 'aws-sdk/lib/event-stream/event-message-chunker-stream.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/event-message-chunker-stream'>;
+}
+declare module 'aws-sdk/lib/event-stream/event-message-chunker.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/event-message-chunker'>;
+}
+declare module 'aws-sdk/lib/event-stream/event-message-unmarshaller-stream.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/event-message-unmarshaller-stream'>;
+}
+declare module 'aws-sdk/lib/event-stream/int64.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/int64'>;
+}
+declare module 'aws-sdk/lib/event-stream/parse-event.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/parse-event'>;
+}
+declare module 'aws-sdk/lib/event-stream/parse-message.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/parse-message'>;
+}
+declare module 'aws-sdk/lib/event-stream/split-message.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/split-message'>;
+}
+declare module 'aws-sdk/lib/event-stream/streaming-create-event-stream.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/streaming-create-event-stream'>;
+}
+declare module 'aws-sdk/lib/event-stream/to-buffer.js' {
+  declare module.exports: $Exports<'aws-sdk/lib/event-stream/to-buffer'>;
 }
 declare module 'aws-sdk/lib/http.js' {
   declare module.exports: $Exports<'aws-sdk/lib/http'>;
