@@ -1,7 +1,7 @@
 // @flow
 
 import { Router } from "express";
-import PassportSlack from "@aoberoi/passport-slack";
+import PassportSlack from "passport-slack";
 
 import Config from "../../../../config";
 import GraphQLApi from "../../../graphql";
@@ -45,9 +45,7 @@ const createSlackMiddleware = ({
 
   const verifyCallback = async (
     accessToken: string,
-    scopes: Array<string>,
-    team: Object,
-    extra: Object,
+    refreshToken: string,
     profile: Object,
     done: (err: ?Error, user: ?Object) => void,
   ) => {
@@ -58,8 +56,8 @@ const createSlackMiddleware = ({
       role: config.env === "development" ? "ADMIN" : undefined,
     };
     const input2 = {
-      slackApiId: team.id,
-      name: team.name,
+      slackApiId: profile.team.id,
+      name: profile.team.name,
     };
     try {
       const context = { authTokenSecret: config.authTokenSecret };
