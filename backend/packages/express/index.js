@@ -25,7 +25,14 @@ class ExpressAppFunction implements ILambdaFunction {
   static GRAPHQL_PATH = "/graphql";
 
   async handleEvent(event: Object, context: Object): Promise<void> {
-    return awsServerlessExpress.proxy(this.server, event, context);
+    // TODO: don't patch context after v4.x is released:
+    // https://github.com/awslabs/aws-serverless-express/issues/134#issuecomment-379417431
+    return new Promise(resolve => {
+      awsServerlessExpress.proxy(this.server, event, {
+        ...context,
+        succeed: process.env.IS_OFFLINE ? context.succeed : resolve,
+      });
+    });
   }
 
   createServer({ config, logger, graphqlApi }: Args): Object {

@@ -8,7 +8,7 @@ provider:
   # http://docs.aws.amazon.com/acm/latest/APIReference/API_RequestCertificate.html
   region: us-east-1
   cfLogs: true
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   stage: ${opt:stage}
   deploymentBucket: ${self:service}-deployment
 

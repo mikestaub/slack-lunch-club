@@ -6,7 +6,7 @@ provider:
   name: aws
   region: us-east-1
   cfLogs: true
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   vpc:
     securityGroupIds:
       - ${self:custom.globalAws.LambdaSecurityGroup}
@@ -50,8 +50,8 @@ provider:
 plugins: # order matters
   - serverless-plugin-warmup
   - '@keboola/serverless-papertrail-logging'
-  - serverless-webpack
   - serverless-offline
+  - serverless-webpack
   - serverless-domain-manager
   - serverless-content-encoding
 

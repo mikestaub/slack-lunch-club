@@ -95,12 +95,6 @@ module.exports = {
   externals,
   devtool: "inline-source-map",
   plugins: plugins,
-  resolve: {
-    alias: {
-      // TODO remove this when serverless framework supports node 8.10
-      arangojs: "arangojs/lib/cjs/index.js",
-    },
-  },
   module: {
     rules: [
       {
