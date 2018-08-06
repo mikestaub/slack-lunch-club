@@ -1,5 +1,4 @@
 import puppeteer from "puppeteer";
-import cookie from "cookie";
 
 const REQUEST_TIMEOUT = 3000;
 const DEBUG = false;
@@ -22,13 +21,14 @@ beforeAll(async () => {
 
   page.on("error", handleError);
   page.on("pageerror", handleError);
-  page.on("response", onResponse.bind(page));
 
   if (DEBUG) {
     page.on("console", logConsole);
   }
 
-  await page.goto(process.env.TEST_URL);
+  await page.goto(process.env.TEST_URL, {
+    waitUntil: "networkidle0",
+  });
 });
 
 afterAll(async () => {
@@ -106,46 +106,4 @@ function logConsole(msg) {
   const line = `${msg["_type"]}: ${msg["_text"]}`;
   // eslint-disable-next-line no-console
   console.log(line);
-}
-
-async function onResponse(res) {
-  let error = null;
-  let json = null;
-  const code = res.status();
-  const isRedirect = code >= 300 && code < 400;
-
-  try {
-    json = await res.json();
-  } catch (err) {
-    // NO_OP
-  }
-
-  // TODO: why are response cookies not being set in CI ?
-  // https://github.com/GoogleChrome/puppeteer/issues/2573
-  if (isRedirect && res._headers["x-ratelimit-remaining"]) {
-    const ck = cookie.parse(res._headers["set-cookie"]);
-    const expires = Date.now() / 1000 + 30;
-    if (ck["token"]) {
-      const cookie = {
-        name: "token",
-        value: ck["token"],
-        domain: ck.Domain,
-        path: ck.Path,
-        expires,
-        sameSite: ck.SameSite,
-      };
-      await this.setCookie(cookie);
-    }
-  }
-
-  if (!res.ok() && !isRedirect) {
-    error = await res.text();
-  }
-  if (json && json.errors) {
-    error = json.errors[0].message;
-  }
-  if (error) {
-    const errText = `Failed request: Page: ${this.url()}, URL: ${res.url()}, Error: ${error}`;
-    throw new Error(errText);
-  }
 }
