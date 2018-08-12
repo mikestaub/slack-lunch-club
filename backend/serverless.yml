@@ -51,8 +51,8 @@ provider:
 plugins: # order matters
   - serverless-plugin-warmup
   - '@keboola/serverless-papertrail-logging'
-  - serverless-offline
   - serverless-webpack
+  - serverless-offline
   - serverless-domain-manager
   - serverless-content-encoding
 

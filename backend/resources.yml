@@ -22,7 +22,6 @@ Resources:
               try:
                   domainName = event['ResourceProperties']['DomainName']
                   regional_domain_name = client.get_domain_name(domainName=domainName)['regionalDomainName']
-                  print "test", regional_domain_name
                   response_data['value'] = regional_domain_name
                   cfnresponse.send(event, context, cfnresponse.SUCCESS,response_data, "RegionalDomainNameString")
               except Exception as e:
