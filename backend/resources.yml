@@ -47,11 +47,11 @@ Resources:
       Name: "api.${self:custom.globalAws.HostedZoneName}"
       HostedZoneId: ${self:custom.globalAws.PrivateHostedZoneId}
       Type: CNAME
-      TTL: '900'
+      TTL: "900"
       ResourceRecords:
         - Fn::GetAtt:
-          - RegionalDomain
-          - value
+            - RegionalDomain
+            - value
 
 Outputs:
   DnsCnameRecord:

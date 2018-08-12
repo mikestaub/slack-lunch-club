@@ -1,6 +1,6 @@
 service: slack-lunch-club-frontend
 
-frameworkVersion: '>=1.2.0 <2.0.0'
+frameworkVersion: ">=1.2.0 <2.0.0"
 
 provider:
   name: aws
@@ -23,7 +23,7 @@ custom:
       - bucket: ${self:custom.domainName}
         files:
           - source: ./build
-            globs: '**'
+            globs: "**"
   globalAws:
     HostedZoneName: ${cf:slack-lunch-club-global-aws.HostedZoneName}
     PrivateHostedZoneId: ${cf:slack-lunch-club-global-aws.PrivateHostedZoneId}
@@ -38,11 +38,11 @@ resources:
     isProduction:
       Fn::Equals:
         - ${opt:stage}
-        - 'production'
+        - "production"
     isNotProduction:
       Fn::Not:
         - Fn::Equals:
-          - ${opt:stage}
-          - 'production'
+            - ${opt:stage}
+            - "production"
   Resources: ${file(./resources.yml):Resources}
   Outputs: ${file(./resources.yml):Outputs}
