@@ -26,6 +26,11 @@ let copyFiles = [
   copyArangoFile("arangodump.conf", "etc/relative"),
   copyArangoFile("arangorestore.conf", "etc/relative"),
   ...copyDbTransactionFiles(),
+  // TODO: https://github.com/mjpearson/passport-slack/issues/37
+  {
+    from: "node_modules/passport-slack",
+    to: "node_modules/passport-slack",
+  },
 ];
 
 const perms = {
@@ -63,7 +68,7 @@ let plugins = [
   new PermissionsOutputPlugin(perms),
 ];
 
-let externals = [/@arangodb/, /transaction/];
+let externals = [/@arangodb/, /transaction/, /passport-slack/];
 
 const isDev = process.env.NODE_ENV === "development";
 const isLocal = process.env.IS_INVOKE_LOCAL;

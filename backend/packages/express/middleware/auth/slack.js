@@ -40,7 +40,6 @@ const createSlackMiddleware = ({
     clientID: config.slack.clientId,
     clientSecret: config.slack.clientSecret,
     callbackURL: `https://${config.domainName}/auth/slack/return`,
-    team: config.slack.teamId,
   };
 
   const verifyCallback = async (
