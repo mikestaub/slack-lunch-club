@@ -5,8 +5,9 @@
   "main": "index.js",
   "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
   "license": "MIT",
-  "devDependencies": {
-    "apollo": "1.7.0"
-  },
-  "dependencies": {}
+  "devDependencies": {},
+  "dependencies": {
+    "apollo": "1.7.0",
+    "fs-extra": "7.0.0"
+  }
 }
