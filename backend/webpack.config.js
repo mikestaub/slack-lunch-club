@@ -66,8 +66,9 @@ let plugins = [
 let externals = [/@arangodb/, /transaction/];
 
 const isDev = process.env.NODE_ENV === "development";
+const isLocal = process.env.IS_INVOKE_LOCAL;
 
-if (isDev && !process.env.USE_DIST) {
+if ((isDev && !process.env.USE_DIST) || isLocal) {
   externals.push(nodeExternals());
 } else if (!isDev) {
   copyFiles.push({
