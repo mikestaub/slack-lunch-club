@@ -1,0 +1,12 @@
+{
+  "name": "slack-lunch-club-publish-schema",
+  "version": "1.0.0",
+  "description": "Publish GraphQL schema to Apollo engine.",
+  "main": "index.js",
+  "author": "Michael Staub <mikestaub22@gmail.com> (http://michaelstaub.com)",
+  "license": "MIT",
+  "devDependencies": {
+    "apollo": "1.7.0"
+  },
+  "dependencies": {}
+}

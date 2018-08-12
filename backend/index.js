@@ -3,6 +3,7 @@ import GraphDB from "./packages/db";
 import GraphQlApi from "./packages/graphql";
 import ExpressAppFunction from "./packages/express";
 import MatchMailerFunction from "./packages/matcher";
+import PublishSchemaFunction from "./packages/publish-schema";
 import DbBackupRestoreService from "./packages/db-backup-restore";
 import { initProcess, asyncWrapper, Mailer, Logger } from "./packages/utils";
 
@@ -38,6 +39,7 @@ const dbBackupProps = {
 
 const expressAppFunction = new ExpressAppFunction(commonProps);
 const matchMailerFunction = new MatchMailerFunction(commonProps);
+const publishSchemaFunction = new PublishSchemaFunction(commonProps);
 const dbBackupRestore = new DbBackupRestoreService(dbBackupProps);
 const { dbBackupFunction, dbRestoreFunction } = dbBackupRestore;
 
@@ -67,5 +69,9 @@ const dbRestore = asyncWrapper({
   ...commonArgs,
   func: dbRestoreFunction,
 });
+const publishSchema = asyncWrapper({
+  ...commonArgs,
+  func: publishSchemaFunction,
+});
 
-export { expressApp, matchMailer, dbBackup, dbRestore };
+export { expressApp, matchMailer, dbBackup, dbRestore, publishSchema };
