@@ -1,26 +1,22 @@
 // @flow
 
-import { graphqlExpress } from "apollo-server-express";
+import { ApolloServer } from "apollo-server-express";
 import depthLimit from "graphql-depth-limit";
 import { compose } from "compose-middleware";
-import NoIntrospection from "graphql-disable-introspection";
 import { maskErrors } from "graphql-errors";
 import express, { Router } from "express";
-import playgroundMiddleware from "graphql-playground-middleware-express";
 import voyagerMiddleware from "graphql-voyager/middleware/express";
 
-import type { $Request, $Response, NextFunction, Middleware } from "express";
+import type { $Request, $Response, Middleware } from "express";
 import type { ExpressMiddlewareProps } from "../index";
 
 function createMiddleware(
-  { config, graphqlApi, logger, graphqlPath }: ExpressMiddlewareProps,
+  { app, config, graphqlApi, logger, graphqlPath }: ExpressMiddlewareProps,
   jwtVerify: Middleware,
-): Middleware {
+): void {
   const isDev = config.env === "development";
-  const isProd = config.env === "production";
   const PLAYGROUND_PATH = "/playground";
   const VOYAGER_PATH = "/voyager";
-  const playground = playgroundMiddleware({ endpoint: graphqlPath });
   const voyager = voyagerMiddleware({ endpointUrl: graphqlPath });
   const router = Router();
   const validationRules = [depthLimit(10)];
@@ -33,46 +29,19 @@ function createMiddleware(
 
   if (!isDev) {
     maskErrors(schema); // do not send internal errors to client
-    validationRules.push(NoIntrospection);
   }
 
-  const apolloExpress = (req: $Request, res: $Response, next: NextFunction) => {
-    const { user, authTokenSecret } = req;
+  const addQuery = (req: $Request, $res: $Response, next) => {
     const { query, operationName } = req.body;
-    const startTime = Date.now();
-
     if (!isIntrospectionQuery(query)) {
       req.body.query = allQueries[operationName] || "INVALID_OPERATION_NAME";
     }
-
-    return graphqlExpress({
-      schema,
-      validationRules,
-      context: {
-        ...context,
-        user,
-        authTokenSecret,
-      },
-      async extensions({ operationName }) {
-        return {
-          operationName,
-          runTime: Date.now() - startTime,
-        };
-      },
-      formatError(err) {
-        logger.error(err);
-        return err;
-      },
-    })(req, res, next);
+    return next();
   };
-
-  router.all("/", apolloExpress);
-  router.get(PLAYGROUND_PATH, playground);
-  router.get(VOYAGER_PATH, voyager);
 
   // ignore unauthorized errors for specific routes
   const overrideAuth = (err, req, res, next) => {
-    if (!isProd && err.name === "unauthorized") {
+    if (isDev && err.name === "unauthorized") {
       const ignorePaths = [
         `${graphqlPath}${PLAYGROUND_PATH}`,
         `${graphqlPath}${VOYAGER_PATH}`,
@@ -91,7 +60,43 @@ function createMiddleware(
     return next(err);
   };
 
-  return compose([jwtVerify, overrideAuth, express.json(), router]);
+  const server = new ApolloServer({
+    schema,
+    engine: {
+      apiKey: config.apolloEngineApiKey,
+    },
+    validationRules,
+    bodyParserConfig: true,
+    introspection: isDev,
+    playground: isDev,
+    context: ({ req }) => {
+      return {
+        ...context,
+        user: req.user,
+        authTokenSecret: req.authTokenSecret,
+      };
+    },
+    formatError(err) {
+      logger.error(err);
+      return err;
+    },
+  });
+
+  router.get(VOYAGER_PATH, voyager);
+
+  const mw = compose([
+    jwtVerify,
+    overrideAuth,
+    express.json(),
+    addQuery,
+    router,
+  ]);
+
+  app.use("/graphql", mw);
+  server.applyMiddleware({
+    app,
+    playgroundOptions: { endpoint: PLAYGROUND_PATH },
+  });
 }
 
 export default createMiddleware;

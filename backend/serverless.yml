@@ -46,6 +46,7 @@ provider:
     SLACK_CLIENT_ID: ${self:custom.secrets.SLACK_CLIENT_ID}
     SLACK_CLIENT_SECRET: ${self:custom.secrets.SLACK_CLIENT_SECRET}
     AUTH_TOKEN_SECRET: ${self:custom.secrets.AUTH_TOKEN_SECRET}
+    APOLLO_ENGINE_API_KEY: ${self:custom.secrets.APOLLO_ENGINE_API_KEY}
 
 plugins: # order matters
   - serverless-plugin-warmup

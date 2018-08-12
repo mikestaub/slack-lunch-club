@@ -11,6 +11,7 @@ import type { Middleware } from "express";
 import type { ILogger } from "backend-types";
 
 type ExpressMiddlewareProps = {
+  app: Object,
   config: Config,
   graphqlApi: GraphQLApi,
   logger: ILogger,
@@ -20,14 +21,13 @@ type ExpressMiddlewareProps = {
 
 class ExpressMiddleware {
   auth: Middleware;
-  graphql: Middleware;
   utils: Middleware;
 
   constructor(props: ExpressMiddlewareProps): void {
     const { auth, jwtVerify } = createAuthMiddleware(props);
     this.auth = auth;
-    this.graphql = createGraphQLMiddleware(props, jwtVerify);
     this.utils = createUtilsMiddleware(props);
+    createGraphQLMiddleware(props, jwtVerify);
   }
 }
 

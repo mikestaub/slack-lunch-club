@@ -6,6 +6,7 @@ class Config {
       authTokenSecret: env.AUTH_TOKEN_SECRET,
       domainName: env.DOMAIN_NAME,
       frontendDomainName: env.FRONTEND_DOMAIN_NAME,
+      apolloEngineApiKey: env.APOLLO_ENGINE_API_KEY,
       aws: {
         dbBackupBucketName: env.DB_BACKUP_BUCKET_NAME,
       },

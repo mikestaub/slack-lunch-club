@@ -42,6 +42,7 @@ class ExpressAppFunction implements ILambdaFunction {
       config,
       logger,
       graphqlApi,
+      app,
       authPath: ExpressAppFunction.AUTH_PATH,
       graphqlPath: ExpressAppFunction.GRAPHQL_PATH,
     });
@@ -51,7 +52,6 @@ class ExpressAppFunction implements ILambdaFunction {
 
     app.use(mw.utils.entryMiddleware);
     app.use(ExpressAppFunction.AUTH_PATH, mw.auth);
-    app.use(ExpressAppFunction.GRAPHQL_PATH, mw.graphql);
     app.use(mw.utils.handleNotFound);
     app.use(mw.utils.handleErrors);
 
