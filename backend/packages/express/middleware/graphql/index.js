@@ -4,7 +4,8 @@ import { ApolloServer } from "apollo-server-express";
 import depthLimit from "graphql-depth-limit";
 import { compose } from "compose-middleware";
 import { maskErrors } from "graphql-errors";
-import express, { Router } from "express";
+import { Router } from "express";
+import bodyParser from "body-parser";
 import voyagerMiddleware from "graphql-voyager/middleware/express";
 
 import type { $Request, $Response, Middleware } from "express";
@@ -87,7 +88,7 @@ function createMiddleware(
   const mw = compose([
     jwtVerify,
     overrideAuth,
-    express.json(),
+    bodyParser.json(),
     addQuery,
     router,
   ]);
