@@ -56,6 +56,10 @@ plugins: # order matters
   - serverless-domain-manager
   - serverless-content-encoding
 
+package:
+  include:
+    - .webpack/node_modules
+
 custom:
   customDomain:
     domainName: ${self:custom.secrets.DOMAIN_NAME}
