@@ -132,6 +132,13 @@ module.exports = {
         exclude: /node_modules/,
         loader: "graphql-tag/loader",
       },
+      // TODO: should not need this after node v10.x
+      // https://github.com/bitinn/node-fetch/issues/493
+      {
+        type: "javascript/auto",
+        test: /\.mjs$/,
+        use: [],
+      },
     ],
   },
 };
