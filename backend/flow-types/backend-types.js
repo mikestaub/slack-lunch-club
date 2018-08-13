@@ -7,7 +7,7 @@ import type { IGraphDatabase } from "../packages/db"
 
 declare module "backend-types" {
   declare interface ILambdaFunction {
-    handleEvent(event: Object, context: Object, callback?: (error?: Error) => any): Promise<any>;
+    handleEvent(event: Object, context: Object): Promise<any>;
   }
   declare interface ILogger {
     log(message: string): void;
