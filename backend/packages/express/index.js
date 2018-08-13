@@ -30,7 +30,10 @@ class ExpressAppFunction implements ILambdaFunction {
     return new Promise(resolve => {
       awsServerlessExpress.proxy(this.server, event, {
         ...context,
-        succeed: process.env.IS_OFFLINE ? context.succeed : resolve,
+        succeed: (...args) => {
+          context.succeed(...args);
+          resolve();
+        },
       });
     });
   }
