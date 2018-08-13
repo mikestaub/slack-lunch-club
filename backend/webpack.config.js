@@ -26,11 +26,6 @@ let copyFiles = [
   copyArangoFile("arangodump.conf", "etc/relative"),
   copyArangoFile("arangorestore.conf", "etc/relative"),
   ...copyDbTransactionFiles(),
-  // TODO: https://github.com/mjpearson/passport-slack/issues/37
-  {
-    from: "node_modules/passport-slack",
-    to: "node_modules/passport-slack",
-  },
 ];
 
 const perms = {
@@ -68,7 +63,7 @@ let plugins = [
   new PermissionsOutputPlugin(perms),
 ];
 
-let externals = [/@arangodb/, /transaction/, /passport-slack/];
+let externals = [/@arangodb/, /transaction/];
 
 const isDev = process.env.NODE_ENV === "development";
 const isLocal = process.env.IS_INVOKE_LOCAL;
@@ -137,13 +132,6 @@ module.exports = {
         test: /\.graphql$/,
         exclude: /node_modules/,
         loader: "graphql-tag/loader",
-      },
-      // TODO: should not need this after node v10.x
-      // https://github.com/bitinn/node-fetch/issues/493
-      {
-        type: "javascript/auto",
-        test: /\.mjs$/,
-        use: [],
       },
     ],
   },

@@ -1,7 +1,7 @@
 // @flow
 
 import { Router } from "express";
-import PassportSlack from "passport-slack";
+import PassportSlack from "@mikestaub/passport-slack";
 
 import Config from "../../../../config";
 import GraphQLApi from "../../../graphql";
