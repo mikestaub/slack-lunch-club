@@ -2,6 +2,8 @@
 
 [Live Demo](https://slacklunch.club)
 
+![Build Status](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoia1o1c3hHM3RiT24rU3c2UFR4ajRXSUQrUEFpbFF3ZkJ5UGZHdnIwa3QwTWlaLzZ4TEsvL1NnYjZSaVpWdDBubm5BRnMwRTFQWURCcXpEck9NSjA1RjdBPSIsIml2UGFyYW1ldGVyU3BlYyI6IjdUYjNZcU1GMzJBVTFQdTkiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 ## Overview
 
 Read the series of [blog posts](https://medium.com/@mikestaub22/slack-lunch-club-part-1-7-deep-dive-into-a-modern-web-app-d3eb980a215) for more information about this project.
