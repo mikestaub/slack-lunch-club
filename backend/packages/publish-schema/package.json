@@ -7,7 +7,7 @@
   "license": "MIT",
   "devDependencies": {},
   "dependencies": {
-    "apollo": "1.7.0",
+    "apollo": "1.7.1",
     "fs-extra": "7.0.0"
   }
 }

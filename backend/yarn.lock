@@ -1576,7 +1576,7 @@ apollo-codegen-typescript-legacy@^0.27.0:
   dependencies:
     apollo-codegen-core "^0.27.0"
 
-apollo-codegen-typescript@^0.27.0:
+apollo-codegen-typescript@^0.27.1:
   version "0.27.1"
   resolved "https://registry.yarnpkg.com/apollo-codegen-typescript/-/apollo-codegen-typescript-0.27.1.tgz#b1383d7098bd70d6faac1e906ec86c4a02f752fe"
   dependencies:
@@ -1707,9 +1707,9 @@ apollo-utilities@^1.0.0, apollo-utilities@^1.0.1:
   dependencies:
     fast-json-stable-stringify "^2.0.0"
 
-apollo@1.7.0:
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/apollo/-/apollo-1.7.0.tgz#5fc2c755ce03d15c6ef00e694120e42a843ae53a"
+apollo@1.7.1:
+  version "1.7.1"
+  resolved "https://registry.yarnpkg.com/apollo/-/apollo-1.7.1.tgz#29ae6095f6a55fce18f45b0b9b77898dd03523f2"
   dependencies:
     "@oclif/command" "^1.4.21"
     "@oclif/config" "^1.6.17"
@@ -1726,7 +1726,7 @@ apollo@1.7.0:
     apollo-codegen-flow-legacy "^0.27.0"
     apollo-codegen-scala "^0.27.0"
     apollo-codegen-swift "^0.27.0"
-    apollo-codegen-typescript "^0.27.0"
+    apollo-codegen-typescript "^0.27.1"
     apollo-codegen-typescript-legacy "^0.27.0"
     apollo-link "^1.2.2"
     apollo-link-http "^1.5.4"
