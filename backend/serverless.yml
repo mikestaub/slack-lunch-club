@@ -32,6 +32,7 @@ provider:
     NODE_ENV: ${opt:stage}
     DOMAIN_NAME: ${self:custom.secrets.DOMAIN_NAME}
     FRONTEND_DOMAIN_NAME: ${self:custom.secrets.FRONTEND_DOMAIN_NAME}
+    COOKIE_DOMAIN_NAME: ${self:custom.secrets.COOKIE_DOMAIN_NAME}
     DB_HOST: ${self:custom.secrets.DB_HOST}
     DB_PASS: ${self:custom.secrets.DB_PASS}
     DB_USER: ${self:custom.secrets.DB_USER}

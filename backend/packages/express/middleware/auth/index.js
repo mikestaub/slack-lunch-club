@@ -24,8 +24,8 @@ const createAuthMiddleware = ({
   const cookieParams = {
     maxAge: 60000,
     sameSite: "lax",
-    secure: !(config.env === "development"),
-    domain: config.frontendDomainName,
+    secure: true,
+    domain: config.cookieDomainName,
   };
 
   const sessionMiddleware = cookieSession({
