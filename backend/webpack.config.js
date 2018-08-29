@@ -66,8 +66,9 @@ let plugins = [
 let externals = [/@arangodb/, /transaction/];
 
 const isDev = process.env.NODE_ENV === "development";
+const isLocal = process.env.IS_INVOKE_LOCAL;
 
-if (isDev && !process.env.USE_DIST) {
+if ((isDev && !process.env.USE_DIST) || isLocal) {
   externals.push(nodeExternals());
 } else if (!isDev) {
   copyFiles.push({
@@ -95,12 +96,6 @@ module.exports = {
   externals,
   devtool: "inline-source-map",
   plugins: plugins,
-  resolve: {
-    alias: {
-      // TODO remove this when serverless framework supports node 8.10
-      arangojs: "arangojs/lib/cjs/index.js",
-    },
-  },
   module: {
     rules: [
       {
@@ -137,6 +132,13 @@ module.exports = {
         test: /\.graphql$/,
         exclude: /node_modules/,
         loader: "graphql-tag/loader",
+      },
+      // TODO: should not need this after node v10.x
+      // https://github.com/bitinn/node-fetch/issues/493
+      {
+        type: "javascript/auto",
+        test: /\.mjs$/,
+        use: [],
       },
     ],
   },

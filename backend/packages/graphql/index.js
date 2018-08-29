@@ -1,6 +1,6 @@
 // @flow
 
-import { graphql } from "graphql";
+import { graphql, introspectionQuery } from "graphql";
 
 import schema from "./schema";
 import allQueries from "./api";
@@ -44,6 +44,10 @@ class GraphQLApi {
 
   getSchema(): Object {
     return schema;
+  }
+
+  async getInstrospectionResult(): Promise<Object> {
+    return graphql(schema, introspectionQuery);
   }
 
   getContext(): GraphQLContext {

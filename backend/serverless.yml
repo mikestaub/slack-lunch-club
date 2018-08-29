@@ -1,37 +1,38 @@
 service: slack-lunch-club-backend
 
-frameworkVersion: '>=1.27.3 <2.0.0'
+frameworkVersion: ">=1.27.3 <2.0.0"
 
 provider:
   name: aws
   region: us-east-1
   cfLogs: true
-  runtime: nodejs6.10
+  runtime: nodejs8.10
   vpc:
     securityGroupIds:
       - ${self:custom.globalAws.LambdaSecurityGroup}
     subnetIds:
       - ${self:custom.globalAws.PrivateSubnet}
   iamRoleStatements:
-    - Effect: 'Allow'
+    - Effect: "Allow"
       Action:
-        - 'lambda:InvokeFunction'
-      Resource: '*'
-    - Effect: 'Allow'
+        - "lambda:InvokeFunction"
+      Resource: "*"
+    - Effect: "Allow"
       Action:
-        - 'apigateway:GET'
-      Resource: '*'
-    - Effect: 'Allow'
+        - "apigateway:GET"
+      Resource: "*"
+    - Effect: "Allow"
       Action:
-        - 's3:getObject'
-        - 's3:putObject'
-      Resource: 'arn:aws:s3:::${self:custom.secrets.DB_BACKUP_BUCKET_NAME}/*'
+        - "s3:getObject"
+        - "s3:putObject"
+      Resource: "arn:aws:s3:::${self:custom.secrets.DB_BACKUP_BUCKET_NAME}/*"
   stage: ${opt:stage}
   deploymentBucket: ${self:service}-deployment
   environment:
     NODE_ENV: ${opt:stage}
     DOMAIN_NAME: ${self:custom.secrets.DOMAIN_NAME}
     FRONTEND_DOMAIN_NAME: ${self:custom.secrets.FRONTEND_DOMAIN_NAME}
+    COOKIE_DOMAIN_NAME: ${self:custom.secrets.COOKIE_DOMAIN_NAME}
     DB_HOST: ${self:custom.secrets.DB_HOST}
     DB_PASS: ${self:custom.secrets.DB_PASS}
     DB_USER: ${self:custom.secrets.DB_USER}
@@ -46,14 +47,19 @@ provider:
     SLACK_CLIENT_ID: ${self:custom.secrets.SLACK_CLIENT_ID}
     SLACK_CLIENT_SECRET: ${self:custom.secrets.SLACK_CLIENT_SECRET}
     AUTH_TOKEN_SECRET: ${self:custom.secrets.AUTH_TOKEN_SECRET}
+    APOLLO_ENGINE_API_KEY: ${self:custom.secrets.APOLLO_ENGINE_API_KEY}
 
 plugins: # order matters
   - serverless-plugin-warmup
-  - '@keboola/serverless-papertrail-logging'
+  - "@keboola/serverless-papertrail-logging"
   - serverless-webpack
   - serverless-offline
   - serverless-domain-manager
   - serverless-content-encoding
+
+package:
+  include:
+    - .webpack/node_modules
 
 custom:
   customDomain:
@@ -78,7 +84,7 @@ custom:
 
 functions:
   express-app:
-    description: 'Authentication and graphQL server.'
+    description: "Authentication and graphQL server."
     handler: index.expressApp
     memorySize: 3008
     timeout: 30
@@ -87,22 +93,27 @@ functions:
       - http: any /
     warmup: true
   match-mailer:
-    description: 'Email every user their weekly match.'
+    description: "Email every user their weekly match."
     handler: index.matchMailer
     memorySize: 3008
     timeout: 300 # 5 min
     events:
       - schedule: cron(0 12 ? * sat *) # every saturday at noon (UTC)
   db-backup:
-    description: 'Backup the database to S3.'
+    description: "Backup the database to S3."
     handler: index.dbBackup
     memorySize: 3008
     timeout: 300
     events:
       - schedule: cron(0 0 ? * * *) # every day at midnight
   db-restore:
-    description: 'Restore the database from a backup. (must be triggered manually from AWS Console)'
+    description: "Restore the database from a backup. (must be triggered manually from AWS Console)"
     handler: index.dbRestore
+    memorySize: 3008
+    timeout: 300
+  publish-schema:
+    description: "Publish the GraphQL schema to Apollo engine."
+    handler: index.publishSchema
     memorySize: 3008
     timeout: 300
 
@@ -111,5 +122,5 @@ resources:
     isProduction:
       Fn::Equals:
         - ${opt:stage}
-        - 'production'
+        - "production"
   Resources: ${file(./resources.yml):Resources}

@@ -96,4 +96,9 @@ module.exports = {
     staging: "${self:custom.globalAws.PrivateHostedZoneId}",
     production: "${self:custom.globalAws.PublicHostedZoneId}",
   },
+  APOLLO_ENGINE_API_KEY: {
+    development: "PLACE_HOLDER",
+    staging: "PLACE_HOLDER",
+    production: "PLACE_HOLDER",
+  },
 };

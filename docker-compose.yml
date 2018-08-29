@@ -1,7 +1,6 @@
-version: '3'
+version: "3"
 
 services:
-
   # development container
   slack-lunch-club-devbox:
     container_name: slack-lunch-club-devbox
@@ -20,9 +19,9 @@ services:
       - 4000:4000 # backend
       - 9229:9229 # debug backend
     volumes:
-      - './:/opt/app:delegated'
-      - '~/.git:/root/.git'
-    command: 'tail -f /dev/null'
+      - "./:/opt/app:delegated"
+      - "~/.git:/root/.git"
+    command: "tail -f /dev/null"
     privileged: true
 
   # database
@@ -38,4 +37,3 @@ services:
 
 volumes:
   arangodb-data: null
-

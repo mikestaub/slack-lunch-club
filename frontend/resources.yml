@@ -1,5 +1,4 @@
 Resources:
-
   S3WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
@@ -14,7 +13,7 @@ Resources:
       Bucket:
         Ref: S3WebsiteBucket
       PolicyDocument:
-        Version: '2012-10-17'
+        Version: "2012-10-17"
         Statement:
           - Sid: AddPerm
             Effect: Allow
@@ -23,10 +22,10 @@ Resources:
               - s3:GetObject
             Resource:
               - Fn::Join:
-                - ''
-                - - 'arn:aws:s3:::'
-                  - ${self:custom.domainName}
-                  - '/*'
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - ${self:custom.domainName}
+                    - "/*"
 
   WebsiteCdn:
     Type: AWS::CloudFront::Distribution
@@ -39,11 +38,11 @@ Resources:
           - Id: s3-website-bucket
             DomainName:
               Fn::Join:
-                - '.'
+                - "."
                 - - ${self:custom.domainName}
-                  - 's3.amazonaws.com'
+                  - "s3.amazonaws.com"
             S3OriginConfig:
-              OriginAccessIdentity: ''
+              OriginAccessIdentity: ""
         DefaultRootObject: index.html
         DefaultCacheBehavior:
           TargetOriginId: s3-website-bucket
@@ -58,12 +57,12 @@ Resources:
           Compress: true
           ForwardedValues:
             QueryString: true
-          ViewerProtocolPolicy: 'redirect-to-https'
+          ViewerProtocolPolicy: "redirect-to-https"
           MinTTL: 0
           DefaultTTL: 0
         CacheBehaviors:
           - TargetOriginId: s3-website-bucket
-            PathPattern: 'static/*'
+            PathPattern: "static/*"
             AllowedMethods:
               - GET
               - HEAD
@@ -73,7 +72,7 @@ Resources:
               - GET
               - OPTIONS
             Compress: true
-            ViewerProtocolPolicy: 'redirect-to-https'
+            ViewerProtocolPolicy: "redirect-to-https"
             ForwardedValues:
               QueryString: false
             MinTTL: 0
@@ -104,7 +103,7 @@ Resources:
           Fn::GetAtt:
             - WebsiteCdn
             - DomainName
-        HostedZoneId: 'Z2FDTNDATAQYW2' # hardcoded by AWS
+        HostedZoneId: "Z2FDTNDATAQYW2" # hardcoded by AWS
 
   DnsAliasRecordPrivate2:
     Type: AWS::Route53::RecordSet
@@ -118,7 +117,7 @@ Resources:
           Fn::GetAtt:
             - WebsiteCdn
             - DomainName
-        HostedZoneId: 'Z2FDTNDATAQYW2' # hardcoded by AWS
+        HostedZoneId: "Z2FDTNDATAQYW2" # hardcoded by AWS
 
   DnsAliasRecordPublic:
     Type: AWS::Route53::RecordSet
@@ -132,7 +131,7 @@ Resources:
           Fn::GetAtt:
             - WebsiteCdn
             - DomainName
-        HostedZoneId: 'Z2FDTNDATAQYW2' # hardcoded by AWS
+        HostedZoneId: "Z2FDTNDATAQYW2" # hardcoded by AWS
 
 Outputs:
   S3WebsiteBucket:

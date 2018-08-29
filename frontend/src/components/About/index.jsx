@@ -45,7 +45,8 @@ function About(props) {
           rel="noopener"
         >
           here
-        </Link>.
+        </Link>
+        .
       </Text>
       <Text>
         And follow me on twitter for future updates.

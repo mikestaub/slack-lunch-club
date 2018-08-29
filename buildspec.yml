@@ -14,7 +14,7 @@ env:
     TEST_EMAILS_ONLY: true
   parameter-store:
     ENCRYPTION_KEY: /slack-lunch-club/ENCRYPTION_KEY
-            
+
 phases:
   install:
     commands:

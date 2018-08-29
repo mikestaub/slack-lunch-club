@@ -1,6 +1,6 @@
 service: slack-lunch-club-global
 
-frameworkVersion: '>=1.27.3 <2.0.0'
+frameworkVersion: ">=1.27.3 <2.0.0"
 
 provider:
   name: aws

@@ -1,4 +1,4 @@
-// flow-typed signature: ee1e5e607278f9ee5e275088757b50d7
+// flow-typed signature: 1db172dd3fb56920229e3d1bd956553e
 // flow-typed version: <<STUB>>/babel-loader_v8.0.0-beta.4/flow_v0.75.0
 
 /**
@@ -22,7 +22,11 @@ declare module 'babel-loader' {
  * require those files directly. Feel free to delete any files that aren't
  * needed.
  */
-declare module 'babel-loader/lib/fs-cache' {
+declare module 'babel-loader/lib/cache' {
+  declare module.exports: any;
+}
+
+declare module 'babel-loader/lib/Error' {
   declare module.exports: any;
 }
 
@@ -30,15 +34,7 @@ declare module 'babel-loader/lib/index' {
   declare module.exports: any;
 }
 
-declare module 'babel-loader/lib/resolve-rc' {
-  declare module.exports: any;
-}
-
-declare module 'babel-loader/lib/utils/exists' {
-  declare module.exports: any;
-}
-
-declare module 'babel-loader/lib/utils/read' {
+declare module 'babel-loader/lib/transform' {
   declare module.exports: any;
 }
 
@@ -47,20 +43,17 @@ declare module 'babel-loader/lib/utils/relative' {
 }
 
 // Filename aliases
-declare module 'babel-loader/lib/fs-cache.js' {
-  declare module.exports: $Exports<'babel-loader/lib/fs-cache'>;
+declare module 'babel-loader/lib/cache.js' {
+  declare module.exports: $Exports<'babel-loader/lib/cache'>;
+}
+declare module 'babel-loader/lib/Error.js' {
+  declare module.exports: $Exports<'babel-loader/lib/Error'>;
 }
 declare module 'babel-loader/lib/index.js' {
   declare module.exports: $Exports<'babel-loader/lib/index'>;
 }
-declare module 'babel-loader/lib/resolve-rc.js' {
-  declare module.exports: $Exports<'babel-loader/lib/resolve-rc'>;
-}
-declare module 'babel-loader/lib/utils/exists.js' {
-  declare module.exports: $Exports<'babel-loader/lib/utils/exists'>;
-}
-declare module 'babel-loader/lib/utils/read.js' {
-  declare module.exports: $Exports<'babel-loader/lib/utils/read'>;
+declare module 'babel-loader/lib/transform.js' {
+  declare module.exports: $Exports<'babel-loader/lib/transform'>;
 }
 declare module 'babel-loader/lib/utils/relative.js' {
   declare module.exports: $Exports<'babel-loader/lib/utils/relative'>;

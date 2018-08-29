@@ -54,13 +54,14 @@ const asyncWrapper = ({
 }) => async (
   event: Object,
   context: Object,
-  callback: (error?: Error) => any,
-): Promise<any> => {
+  callback: (error: ?Error, result: any) => any,
+): any => {
   try {
     if (promises) {
       await Promise.all(promises);
     }
-    await func.handleEvent(event, context, callback);
+    const result = await func.handleEvent(event, context);
+    return callback(null, result);
   } catch (err) {
     const stackTrace = err.stack;
     logger.error(`Lambda function failed to handle event: ${stackTrace}`);

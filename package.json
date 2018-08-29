@@ -28,7 +28,7 @@
     "ncu:update": "scripts/check-updates.sh -u",
     "lint": "cd backend && npm run lint && cd ../frontend && npm run lint",
     "report-coverage": "cd backend && npm run report-coverage && cd ../frontend && npm run report-coverage",
-    "prettier": "prettier --write '**/*.{js,jsx}'",
+    "prettier": "prettier --write '**/*.{js,jsx,yml}'",
     "print-env-vars": "NODE_ENV=global simple-secrets print",
     "start:backend": "cd backend && npm start",
     "start:frontend": "cd frontend && npm start",
@@ -60,7 +60,7 @@
     "flow-typed": "2.4.0",
     "husky": "0.15.0-rc.13",
     "lint-staged": "7.2.0",
-    "prettier": "1.13.7"
+    "prettier": "1.14.2"
   },
   "keywords": [
     "serverless",
