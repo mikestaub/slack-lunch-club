@@ -63,7 +63,7 @@
     "serverless-content-encoding": "1.1.0",
     "serverless-domain-manager": "2.6.0",
     "serverless-offline": "3.25.9",
-    "serverless-plugin-warmup": "3.6.2-rc.1",
+    "serverless-plugin-warmup": "4.5.3-rc.1",
     "serverless-webpack": "5.2.0",
     "webpack": "4.17.1",
     "webpack-node-externals": "1.7.2",
